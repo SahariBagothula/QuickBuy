@@ -18,7 +18,7 @@ public class OtpService {
         return String.format("%06d", random.nextInt(999999));
     }
 
-    public void sendOtpEmai(String email, String otp) {
+    public void sendOtp(String email, String otp) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(email);
         message.setSubject("Quickbuy registartion OTP");
