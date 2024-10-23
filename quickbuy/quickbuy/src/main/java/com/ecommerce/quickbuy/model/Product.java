@@ -16,7 +16,7 @@ public class Product {
     private Double price;
     private String category;
     private String gender;
-    private boolean stock;
+    private int stock;
     private String imageUrl;
 
     public int getId() {
@@ -67,20 +67,20 @@ public class Product {
         this.gender = gender;
     }
 
-    public boolean isStock() {
-        return stock;
-    }
-
-    public void setStock(boolean stock) {
-        this.stock = stock;
-    }
-
     public String getImageUrl() {
         return imageUrl;
     }
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
 }
