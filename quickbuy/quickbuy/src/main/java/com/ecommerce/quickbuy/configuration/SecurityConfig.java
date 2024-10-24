@@ -20,7 +20,8 @@ public class SecurityConfig {
                         .requestMatchers("/user/**", "/user/register", "/user/verifyOtp", "/user/login",
                                 "/products/add", "/products/findAll", "/products/category/**", "/products/delete/**",
                                 "/cart/add", "/cart/findAll", "/cart/remove", "/wishlist/add", "/wishlist/findAll",
-                                "/wishlist/remove", "/wishlist/addToCart", "/order/place", "/order/user", "/order/pay",
+                                "/wishlist/remove", "/wishlist/addToCart", "/order/place", "/order/findAll",
+                                "/order/pay",
                                 "/address/findAll", "/address/add", "/address/remove")
                         .permitAll() // Allow
                         // public

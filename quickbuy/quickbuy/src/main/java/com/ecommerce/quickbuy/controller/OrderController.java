@@ -26,7 +26,7 @@ public class OrderController {
         return ResponseEntity.ok(order);
     }
 
-    @GetMapping("/user")
+    @GetMapping("/findAll")
     public ResponseEntity<List<Order>> getOrders(@RequestParam int userId) {
         List<Order> orders = orderService.getOrdersByUserId(userId);
         return ResponseEntity.ok(orders);
