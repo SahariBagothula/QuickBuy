@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.ecommerce.quickbuy.model.Address;
+import com.ecommerce.quickbuy.dto.AddressDto;
 import com.ecommerce.quickbuy.service.AddressService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,20 +23,20 @@ public class AddressController {
     @Autowired
     private AddressService addressService;
 
-    @GetMapping("/user")
-    public ResponseEntity<List<Address>> getUserAddresses(@RequestParam int userId) {
-        List<Address> addresses = addressService.getAddressesByUserId(userId);
+    @GetMapping("/findAll")
+    public ResponseEntity<List<AddressDto>> getUserAddresses(@RequestParam int userId) {
+        List<AddressDto> addresses = addressService.getAddressesByUserId(userId);
         return ResponseEntity.ok(addresses);
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Address> addAddress(@RequestBody Address address) {
-        Address savedAddress = addressService.addAddress(address);
+    public ResponseEntity<AddressDto> addAddress(@RequestBody AddressDto address) {
+        AddressDto savedAddress = addressService.addAddress(address);
         return ResponseEntity.ok(savedAddress);
     }
 
-    @DeleteMapping("/delete")
-    public ResponseEntity<String> deleteAddress(int addressId) {
+    @DeleteMapping("/remove")
+    public ResponseEntity<String> deleteAddress(@RequestParam int addressId) {
         addressService.deleteAddress(addressId);
         return ResponseEntity.ok("Address deleted successfully");
     }

@@ -21,7 +21,7 @@ public class SecurityConfig {
                                 "/products/add", "/products/findAll", "/products/category/**", "/products/delete/**",
                                 "/cart/add", "/cart/findAll", "/cart/remove", "/wishlist/add", "/wishlist/findAll",
                                 "/wishlist/remove", "/wishlist/addToCart", "/order/place", "/order/user", "/order/pay",
-                                "/address/user", "/address/add", "/address/delete")
+                                "/address/findAll", "/address/add", "/address/remove")
                         .permitAll() // Allow
                         // public
                         // access to
