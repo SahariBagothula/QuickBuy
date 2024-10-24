@@ -79,4 +79,39 @@ public class CartService {
                                 .orElseThrow(() -> new CartNotFoundException("Cart not found"));
         }
 
+        // @Transactional
+        // public Order placeOrder(int userId, int addressId) {
+        // User user = userRepository.findById(userId)
+        // .orElseThrow(() -> new UserNotFoundException("User not found"));
+
+        // Address address = addressRepository.findById(addressId)
+        // .orElseThrow(() -> new AddressNotFoundException("Address not found"));
+
+        // Cart cart = cartRepository.findByUserId(userId)
+        // .orElseThrow(() -> new CartNotFoundException("Cart not found"));
+
+        // Order order = new Order();
+        // order.setUser(user);
+        // order.setDeliveryAddress(address);
+        // order.setOrderDate(LocalDateTime.now());
+
+        // double totalPrice = 0;
+        // for (CartItem item : cart.getCartItems()) {
+        // OrderItem orderItem = new OrderItem();
+        // orderItem.setProduct(item.getProduct());
+        // orderItem.setQuantity(item.getQuantity());
+        // order.getOrderItems().add(orderItem);
+        // totalPrice += item.getProduct().getPrice() * item.getQuantity();
+        // }
+
+        // order.setTotalPrice(totalPrice);
+        // orderRepository.save(order);
+
+        // cart.getCartItems().clear();
+        // cartRepository.save(cart);
+
+        // return order;
+
+        // }
+
 }
