@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ImagesContext } from '../../index';
+
 import "./About.css";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 
 const About = () => {
+
+    const { state } = useContext(ImagesContext);
+
+    const heroImage = state.images.find(({ imageHeading }) => imageHeading === 'heroAbout');
+    const imageUrl = heroImage ? `http://localhost:8080${heroImage.imageUrl}` : 'defaultImagePath.jpg';
+
     return (
         <>
             <Header />
             <section className="about">
                 <div className="about__header">
                     <img
-                        src="/"
+                        src={imageUrl}
                         alt="About QuickBuy"
                         className="about__header-image"
                     />
@@ -18,14 +26,16 @@ const About = () => {
                 </div>
 
                 <div className="about__product-showcase">
-                    <div className="about__product">
-                        <img src="path_to_product_image1.jpg" alt="Product 1" className="about__product-image" />
-                        <button className="about__product-button">Buy Now</button>
-                    </div>
-                    <div className="about__product">
-                        <img src="path_to_product_image2.jpg" alt="Product 2" className="about__product-image" />
-                        <button className="about__product-button">Buy Now</button>
-                    </div>
+                    {
+                        state.images.map(({ imageHeading, imageUrl }) => {
+                            return (
+                                <div className="about__product">
+                                    <img src={`localhost:8080${imageUrl}`} alt="Product 1" className="about__product-image" />
+                                    <button className="about__product-button">Buy Now</button>
+                                </div>
+                            )
+                        })
+                    }
                 </div>
 
                 <div className="about__description">

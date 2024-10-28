@@ -1,19 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ProductsContext, ProductsProvider } from './contexts/ProductsContext';
+import { ImagesContext, ImagesProvider } from './contexts/ImagesContext';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-export { ProductsContext };
+export { ProductsContext, ImagesContext };
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Router>
     <React.StrictMode>
       <ProductsProvider>
-        <App />
+        <ImagesProvider>
+          <App />
+        </ImagesProvider>
       </ProductsProvider>
     </React.StrictMode>
   </Router>
