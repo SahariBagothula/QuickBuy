@@ -1,0 +1,21 @@
+/* FooterLink.css */
+
+.footer-link {
+    color: #333;
+    text-align: center;
+    padding: 5px;
+    font-size: 0.9rem;
+    margin: auto;
+}
+
+.footer-link h3 {
+    font-size: 2rem;
+    color: #000;
+    margin-bottom: 1rem;
+}
+
+.footer-link p {
+    font-size: 1rem;
+    color: #111;
+    margin: 4px 0;
+}

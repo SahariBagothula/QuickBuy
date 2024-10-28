@@ -1,0 +1,85 @@
+.home-page__new-arrivals {
+    margin: 2rem;
+    text-align: center;
+}
+
+.home-page__new-arrivals-title {
+    font-size: 2.5em;
+    margin-bottom: 0.75rem;
+}
+
+.home-page__new-arrivals-subtitle {
+    font-size: 1.5em;
+    margin-bottom: 1.5rem;
+    font-weight: 100;
+}
+
+.home-page__product-list {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.home-page__product-item {
+    height: 20rem;
+    width: 15rem;
+    margin: 0 0 2rem 0;
+}
+
+.home-page__product-image {
+   height: 15rem;
+   width: 15rem;
+   object-fit: cover;
+   margin-bottom: 0.5rem;
+}
+
+.home-page__product-name {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.home-page__product-price {
+    font-size: 1.2rem;
+    color: #024E82;
+}
+
+.home-page__info-section{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.home-page__info-item{
+    /* border: 1px solid black; */
+    width: 15rem;
+    height: 8rem;
+    display: flex;
+    align-items: center;
+}
+
+.home-page__info-left{
+    color: #333;
+}
+
+.home-page__info-icon{
+    height: 2rem;
+    width: 2rem;
+    margin: 1rem;
+}
+
+.home-page__info-right{
+    display: flex;
+    flex-direction: column;
+}
+
+.home-page__info-title{
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #024E82;
+}
+
+.home-page__info-description{
+    font-size: 0.9rem;
+    font-weight: 100;
+}

@@ -1,5 +1,6 @@
 .hero{
     height: 50rem;
+    margin-top: 5rem;
 }
 
 .hero__content{
@@ -9,7 +10,7 @@
     font-weight: bold;
     padding: 20rem 0 0 0;
     height: 10rem;
-    width: 30rem;
+    width: 32rem;
     text-align: center;
 }
 
@@ -21,4 +22,5 @@
     border: 3px solid white;
     color: white;
     background: none;
+    margin-top: 2rem;
 }
