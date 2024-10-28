@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import HomePage from './components/HomePage';
 import ProductPage from './components/ProductPage';
-import CartPage from './components/CartPage';
+import CartPage from './components/Cart/CartPage.jsx';
 import WishlistPage from './components/WishlistPage';
 import CheckoutPage from './components/CheckoutPage';
 import OrderSummaryPage from './components/OrderSummaryPage';

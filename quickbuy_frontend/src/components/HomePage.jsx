@@ -1,5 +1,7 @@
 import { useContext } from 'react';
 import { ProductsContext } from '../index';
+import Header from './Header/Header';
+import Hero from './Hero/Hero';
 
 const HomePage = () => {
 
@@ -7,6 +9,8 @@ const HomePage = () => {
 
     return (
         <>
+            <Header />
+            <Hero />
             <h1>Products</h1>
             <ul>
                 {
