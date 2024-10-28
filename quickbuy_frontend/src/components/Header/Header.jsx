@@ -1,4 +1,5 @@
 import './Header.css';
+import { Link } from 'react-router-dom';
 import { love, shoppingCart, user } from '../../assets/index';
 
 const Header = () => {
@@ -6,17 +7,17 @@ const Header = () => {
         <>
             <header className="header">
                 <div className="header__heading">
-                    QuickBuy
+                    <Link to="/" className="header__heading-text">QuickBuy</Link>
                 </div>
                 <ul className="header__nav">
-                    <li className="header__nav-item"><a className="header__nav-link">Home</a></li>
-                    <li className="header__nav-item"><a className="header__nav-link">About</a></li>
-                    <li className="header__nav-item"><a className="header__nav-link">Contact us</a></li>
+                    <li className="header__nav-item"><Link to='/' className="header__nav-link">Home</Link></li>
+                    <li className="header__nav-item"><Link to='/about' className="header__nav-link">About</Link></li>
+                    <li className="header__nav-item"><Link className="header__nav-link">Contact us</Link></li>
                 </ul>
                 <ul className="header__nav header__nav--secondary">
-                    <li className="header__nav-item"><a className="header__nav-link"><img src={love} alt='icon' /></a></li>
-                    <li className="header__nav-item"><a className="header__nav-link"><img src={shoppingCart} alt='icon' /></a></li>
-                    <li className="header__nav-item"><a className="header__nav-link"><img src={user} alt='icon' /></a></li>
+                    <li className="header__nav-item"><Link className="header__nav-link"><img src={love} alt='icon' /></Link></li>
+                    <li className="header__nav-item"><Link className="header__nav-link"><img src={shoppingCart} alt='icon' /></Link></li>
+                    <li className="header__nav-item"><Link className="header__nav-link"><img src={user} alt='icon' /></Link></li>
                 </ul>
             </header>
         </>

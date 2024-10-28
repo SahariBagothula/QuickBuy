@@ -22,6 +22,7 @@ import PrivacyPolicy from "./components/FooterLinks/PrivacyPolicy";
 import TermsConditions from "./components/FooterLinks/TermsConditions";
 import CookiePolicy from "./components/FooterLinks/CookiePolicy";
 import './App.css';
+import About from './components/About/About.jsx';
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path='/about' element={<About />} />
         <Route path="/product/:productId" element={<ProductPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/wishlist" element={<WishlistPage />} />

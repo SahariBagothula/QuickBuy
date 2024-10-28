@@ -22,7 +22,9 @@ public class SecurityConfig {
                                 "/cart/add", "/cart/findAll", "/cart/remove", "/wishlist/add", "/wishlist/findAll",
                                 "/wishlist/remove", "/wishlist/addToCart", "/order/place", "/order/findAll",
                                 "/order/pay",
-                                "/address/findAll", "/address/add", "/address/remove")
+                                "/address/findAll", "/address/add", "/address/remove", "/testimonial/add",
+                                "/testimonial/findAll", "/testimonial/update", "/testimonial/delete", "/image/add",
+                                "/image/update", "/image/findAll")
                         .permitAll() // Allow
                         // public
                         // access to
