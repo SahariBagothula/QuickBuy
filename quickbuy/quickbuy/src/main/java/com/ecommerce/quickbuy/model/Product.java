@@ -1,5 +1,7 @@
 package com.ecommerce.quickbuy.model;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
@@ -17,9 +19,12 @@ public class Product {
     private String name;
     private String description;
     private Double price;
-    private String category;
     private String gender;
-    private int stock;
+    private boolean newlyArrived;
+    private boolean topSeller;
+    private String brand;
+    private List<String> category;
+    private List<String> tags;
     private String imageUrl;
 
     public int getId() {
@@ -54,14 +59,6 @@ public class Product {
         this.price = price;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
     public String getGender() {
         return gender;
     }
@@ -78,12 +75,44 @@ public class Product {
         this.imageUrl = imageUrl;
     }
 
-    public int getStock() {
-        return stock;
+    public boolean isNewlyArrived() {
+        return newlyArrived;
     }
 
-    public void setStock(int stock) {
-        this.stock = stock;
+    public void setNewlyArrived(boolean newlyArrived) {
+        this.newlyArrived = newlyArrived;
+    }
+
+    public boolean isTopSeller() {
+        return topSeller;
+    }
+
+    public void setTopSeller(boolean topSeller) {
+        this.topSeller = topSeller;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public List<String> getCategory() {
+        return category;
+    }
+
+    public void setCategory(List<String> category) {
+        this.category = category;
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
     }
 
 }

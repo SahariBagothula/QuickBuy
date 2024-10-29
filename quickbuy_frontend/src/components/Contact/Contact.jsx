@@ -8,12 +8,18 @@ import './Contact.css';
 
 const Contact = () => {
 
+    const { state: imagesState } = useContext(ImagesContext);
+
+    const heroImage = imagesState.images.find(({ imageHeading }) => imageHeading === 'heroContact');
+    const imageUrl = heroImage ? `http://localhost:8080${heroImage.imageUrl}` : '/';
+    console.log(imageUrl)
+
     const form = useRef();
 
     const sendEmail = (e) => {
         e.preventDefault();
         emailjs
-            .sendForm('service_43573sq', 'template_411j42o', form.current, {
+            .sendForm('service_d1nmejk', 'template_411j42o', form.current, {
                 publicKey: 'daRwsWJm90jaoGJOA',
             })
             .then(
@@ -28,11 +34,6 @@ const Contact = () => {
                 },
             );
     }
-
-    const { state: imagesState } = useContext(ImagesContext);
-
-    const heroImage = imagesState.images.find(({ imageHeading }) => imageHeading === 'heroContact');
-    const imageUrl = heroImage ? `http://localhost:8080${heroImage.imageUrl}` : '/';
 
 
     return (
@@ -55,15 +56,15 @@ const Contact = () => {
                             <div className="contact__form">
                                 <div className="contact__form-group">
                                     <label className="contact__label" htmlFor="name">Name</label>
-                                    <input className="contact__input" type="text" id="name" placeholder="Enter your name" required />
+                                    <input name="user_name" className="contact__input" type="text" id="name" placeholder="Enter your name" required />
                                 </div>
                                 <div className="contact__form-group">
                                     <label className="contact__label" htmlFor="email">Email</label>
-                                    <input className="contact__input" type="email" id="email" placeholder="Enter your email" required />
+                                    <input name="user_email" className="contact__input" type="email" id="email" placeholder="Enter your email" required />
                                 </div>
                                 <div className="contact__form-group--full">
                                     <label className="contact__label" htmlFor="message">Message</label>
-                                    <textarea className="contact__textarea" id="message" rows="10" cols="100" placeholder="Enter your message" required></textarea>
+                                    <textarea name="message" className="contact__textarea" id="message" rows="10" cols="100" placeholder="Enter your message" required></textarea>
                                 </div>
 
                             </div>
