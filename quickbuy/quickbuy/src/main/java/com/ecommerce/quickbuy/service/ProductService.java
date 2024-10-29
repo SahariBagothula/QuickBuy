@@ -22,9 +22,9 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public List<Product> findByCatgeory(String category) {
-        return productRepository.findByCategory(category);
-    }
+    // public List<Product> findByCatgeory(String category) {
+    // return productRepository.findByCategory(category);
+    // }
 
     public void deleteProduct(int id) {
         productRepository.deleteById(id);

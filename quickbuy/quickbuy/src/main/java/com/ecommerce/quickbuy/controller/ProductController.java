@@ -35,11 +35,12 @@ public class ProductController {
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
-    @GetMapping("/category/{category}")
-    public ResponseEntity<List<Product>> findByCategory(@PathVariable String category) {
-        List<Product> products = productService.findByCatgeory(category);
-        return new ResponseEntity<>(products, HttpStatus.OK);
-    }
+    // @GetMapping("/category/{category}")
+    // public ResponseEntity<List<Product>> findByCategory(@PathVariable String
+    // category) {
+    // List<Product> products = productService.findByCatgeory(category);
+    // return new ResponseEntity<>(products, HttpStatus.OK);
+    // }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteProducts(@PathVariable int id) {

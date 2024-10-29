@@ -55,7 +55,6 @@ const About = () => {
                         testimonialsState?.data?.map(({ id, imageUrl, message, name }) => {
                             return (
                                 <div className="about__testimonial" key={id}>
-                                    {/* {console.log(`http://localhost:8080${imageUrl}`)} */}
                                     <img src={`http://localhost:8080${imageUrl}`} alt="Testimonial" className="about__testimonial-image" />
                                     <div className="about__testimonial-content">
                                         <p className="about__testimonial-message">

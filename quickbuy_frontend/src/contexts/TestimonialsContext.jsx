@@ -23,7 +23,7 @@ export const TestimonialsProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     useEffect(() => {
-        dispatch({ type: "FETCH_PRODUCTS_REQUEST" })
+        dispatch({ type: "FETCH_PRODUCTS_REQUEST" });
 
         api.get('testimonial/findAll')
             .then(response => {

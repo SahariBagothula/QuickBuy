@@ -1,41 +1,14 @@
 import { useContext } from 'react';
-import { ProductsContext } from '../../index';
+import { ProductsContext, InfoDataContext } from '../../index';
 import Header from '../Header/Header';
 import Hero from '../Hero/Hero';
 import Footer from '../Footer/Footer';
-import { customerSupport, returnIcon, truck, safetyIcon } from '../../assets/index';
 import './HomePage.css';
 
 const HomePage = () => {
 
-    const { state, dispatch } = useContext(ProductsContext);
-
-    const infoData = [
-        {
-            id: 1,
-            icon: truck,
-            title: "free shipping",
-            description: "Enjoy free shipping on all orders above $100",
-        },
-        {
-            id: 2,
-            icon: customerSupport,
-            title: "support 24/7",
-            description: "Our support team is there to help you for queries",
-        },
-        {
-            id: 3,
-            icon: returnIcon,
-            title: "30 days return",
-            description: "Simply return it within 30 days for an exchange",
-        },
-        {
-            id: 4,
-            icon: safetyIcon,
-            title: "100% payment secure",
-            description: "Our payments are secured with 256 bit encryption",
-        },
-    ];
+    const { state: productsState } = useContext(ProductsContext);
+    const { state: dataState } = useContext(InfoDataContext);
 
     return (
         <>
@@ -47,7 +20,7 @@ const HomePage = () => {
                     <h3 className="home-page__new-arrivals-subtitle">Recently added clothes!</h3>
                     <ul className="home-page__product-list">
                         {
-                            state?.data?.map(({ id, category, description, name, price, imageUrl, gender }) => {
+                            productsState?.data?.map(({ id, category, description, name, price, imageUrl, gender }) => {
                                 return (
                                     <li className="home-page__product-item" key={id}>
                                         <img className="home-page__product-image" src={imageUrl} alt={name} />
@@ -60,10 +33,11 @@ const HomePage = () => {
                     </ul>
                 </div>
                 <section className="home-page__info-section">
-                    {infoData.map(({ id, icon, title, description }) => (
+                    {dataState?.data?.map(({ id, imageUrl, title, description }) => (
                         <div className="home-page__info-item" key={id}>
                             <div className="home-page__info-left">
-                                <img className="home-page__info-icon" src={icon} alt="icons" />
+                                {console.log(imageUrl)}
+                                <img className="home-page__info-icon" src={`http://localhost:8080${imageUrl}`} alt="icons" />
                             </div>
                             <div className="home-page__info-right">
                                 <h4 className="home-page__info-title">{title}</h4>
@@ -77,7 +51,7 @@ const HomePage = () => {
                     <h3 className="home-page__new-arrivals-subtitle">Browse our top-selling products</h3>
                     <ul className="home-page__product-list">
                         {
-                            state?.data?.map(({ id, category, description, name, price, imageUrl, gender }) => {
+                            productsState?.data?.map(({ id, category, description, name, price, imageUrl, gender }) => {
                                 return (
                                     <li className="home-page__product-item" key={id}>
                                         <img className="home-page__product-image" src={imageUrl} alt={name} />
