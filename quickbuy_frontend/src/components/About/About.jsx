@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { ImagesContext } from '../../index';
+import { ImagesContext, TestimonialsContext } from '../../index';
 
 import "./About.css";
 import Header from "../Header/Header";
@@ -7,10 +7,17 @@ import Footer from "../Footer/Footer";
 
 const About = () => {
 
-    const { state } = useContext(ImagesContext);
+    const { state: imagesState } = useContext(ImagesContext);
+    const { state: testimonialsState } = useContext(TestimonialsContext);
 
-    const heroImage = state.images.find(({ imageHeading }) => imageHeading === 'heroAbout');
-    const imageUrl = heroImage ? `http://localhost:8080${heroImage.imageUrl}` : 'defaultImagePath.jpg';
+    const heroImage = imagesState.images.find(({ imageHeading }) => imageHeading === 'heroAbout');
+    const imageUrl = heroImage ? `http://localhost:8080${heroImage.imageUrl}` : '/';
+
+    const menImage = imagesState.images.find(({ imageHeading }) => imageHeading === 'menAbout');
+    const imageUrl2 = menImage ? `http://localhost:8080${menImage.imageUrl}` : '/';
+
+    const womenImage = imagesState.images.find(({ imageHeading }) => imageHeading === 'womenAbout');
+    const imageUrl3 = womenImage ? `http://localhost:8080${womenImage.imageUrl}` : '/';
 
     return (
         <>
@@ -26,16 +33,14 @@ const About = () => {
                 </div>
 
                 <div className="about__product-showcase">
-                    {
-                        state.images.map(({ imageHeading, imageUrl }) => {
-                            return (
-                                <div className="about__product">
-                                    <img src={`localhost:8080${imageUrl}`} alt="Product 1" className="about__product-image" />
-                                    <button className="about__product-button">Buy Now</button>
-                                </div>
-                            )
-                        })
-                    }
+                    <div className="about__product">
+                        <img src={imageUrl2} alt="Product 1" className="about__product-image" />
+                        <button className="about__product-button">Buy Now</button>
+                    </div>
+                    <div className="about__product">
+                        <img src={imageUrl3} alt="Product 1" className="about__product-image" />
+                        <button className="about__product-button">Buy Now</button>
+                    </div>
                 </div>
 
                 <div className="about__description">
@@ -45,25 +50,23 @@ const About = () => {
                 </div>
 
                 <div className="about__testimonials">
-                    <div className="about__testimonial">
-                        <img src="path_to_employee_image1.jpg" alt="Employee 1" className="about__testimonial-image" />
-                        <div className="about__testimonial-content">
-                            <p className="about__testimonial-message">
-                                "Working at QuickBuy has been a fantastic experience! The team is dedicated to providing the best shopping experience for our customers."
-                            </p>
-                            <p className="about__testimonial-name">John Doe</p>
-                        </div>
-                    </div>
-
-                    <div className="about__testimonial">
-                        <img src="path_to_employee_image2.jpg" alt="Employee 2" className="about__testimonial-image" />
-                        <div className="about__testimonial-content">
-                            <p className="about__testimonial-message">
-                                "I love being a part of QuickBuy. The environment is energetic and driven towards continuous improvement."
-                            </p>
-                            <p className="about__testimonial-name">Jane Smith</p>
-                        </div>
-                    </div>
+                    <h1 className="about__testimonials-heading">Testimonials</h1>
+                    {
+                        testimonialsState?.data?.map(({ id, imageUrl, message, name }) => {
+                            return (
+                                <div className="about__testimonial" key={id}>
+                                    {/* {console.log(`http://localhost:8080${imageUrl}`)} */}
+                                    <img src={`http://localhost:8080${imageUrl}`} alt="Testimonial" className="about__testimonial-image" />
+                                    <div className="about__testimonial-content">
+                                        <p className="about__testimonial-message">
+                                            {message}
+                                        </p>
+                                        <p className="about__testimonial-name">{name}</p>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
                 </div>
             </section>
             <Footer />

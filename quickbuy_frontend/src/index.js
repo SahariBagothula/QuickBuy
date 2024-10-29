@@ -2,12 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ProductsContext, ProductsProvider } from './contexts/ProductsContext';
 import { ImagesContext, ImagesProvider } from './contexts/ImagesContext';
+import { TestimonialsContext, TestimonialsProvider } from './contexts/TestimonialsContext';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-export { ProductsContext, ImagesContext };
+export { ProductsContext, ImagesContext, TestimonialsContext };
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,7 +16,9 @@ root.render(
     <React.StrictMode>
       <ProductsProvider>
         <ImagesProvider>
-          <App />
+          <TestimonialsProvider>
+            <App />
+          </TestimonialsProvider>
         </ImagesProvider>
       </ProductsProvider>
     </React.StrictMode>

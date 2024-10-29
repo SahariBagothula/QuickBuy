@@ -1,5 +1,5 @@
 .about {
-    margin: 3rem;
+    margin: 0 auto;
   }
   
   .about__header {
@@ -7,15 +7,14 @@
   }
   
   .about__header-image {
-    width: 100vw;
     height: 20rem;
     object-fit: cover;
   }
   
   .about__header-text {
     position: absolute;
-    left: 10%;
-    bottom: 30%;
+    left: 6%;
+    bottom: 20%;
     color: white;
     font-size: 2rem;
     text-transform: uppercase;
@@ -24,7 +23,7 @@
   .about__product-showcase {
     display: flex;
     justify-content: space-around;
-    margin: 20px 0;
+    margin: 3rem 0;
   }
   
   .about__product {
@@ -39,40 +38,54 @@
   
   .about__product-button {
     position: absolute;
-    bottom: 10px;
+    bottom: 3rem;
     left: 50%;
     transform: translateX(-50%);
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #ff6200;
-    color: white;
+    padding: 0.75rem 1.75rem;
+    font-size: 1rem;
+    background-color: #fff;
+    color: #14517B;
     border: none;
     cursor: pointer;
+    text-transform: uppercase;
+    border-radius: 1rem;
   }
   
   .about__description {
-    font-size: 18px;
-    color: #555;
-    margin: 20px 0;
+    margin: auto;
+    max-width: 80%;
+    font-size: 1.25rem;
+    color: #14517B;
+    text-align: center;
   }
   
   .about__testimonials {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    margin-top: 30px;
+    gap: 2rem;
+    margin: 3rem auto;
+    max-width: 80%;
   }
+
+  .about__testimonials-heading{
+      font-size: 2rem;
+      text-align: center;
+  }
+  
   
   .about__testimonial {
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    /* border: 1px solid red; */
+    padding: 2rem;
   }
-  
+
   .about__testimonial-image {
-    width: 80px;
-    height: 80px;
+    width: 8rem;
+    height: 8rem;
     border-radius: 50%;
-    margin-right: 20px;
+    margin-right: 1.5rem;
   }
   
   .about__testimonial-content {
@@ -80,13 +93,14 @@
   }
   
   .about__testimonial-message {
-    font-size: 16px;
-    color: #333;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #555555;
+    margin-bottom: 0.75rem;
   }
   
   .about__testimonial-name {
-    font-size: 14px;
-    color: #666;
-    font-style: italic;
+    font-size: 1.25rem;
+    color: #000;
   }
   

@@ -24,7 +24,7 @@ public class SecurityConfig {
                                 "/order/pay",
                                 "/address/findAll", "/address/add", "/address/remove", "/testimonial/add",
                                 "/testimonial/findAll", "/testimonial/update", "/testimonial/delete", "/image/add",
-                                "/image/update", "/image/findAll", "/images/**")
+                                "/image/update", "/image/findAll", "/images/**", "/**")
                         .permitAll() // Allow
                         // public
                         // access to
