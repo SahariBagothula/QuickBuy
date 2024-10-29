@@ -23,6 +23,7 @@ import TermsConditions from "./components/FooterLinks/TermsConditions";
 import CookiePolicy from "./components/FooterLinks/CookiePolicy";
 import './App.css';
 import About from './components/About/About.jsx';
+import Contact from './components/Contact/Contact.jsx';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path='/about' element={<About />} />
+        <Route path='/contact' element={<Contact />} />
         <Route path="/product/:productId" element={<ProductPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/wishlist" element={<WishlistPage />} />
