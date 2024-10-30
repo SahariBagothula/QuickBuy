@@ -50,6 +50,11 @@
     text-transform: uppercase;
     border-radius: 1rem;
   }
+
+  .about__product-button .about__product-button-link{
+    text-decoration: none;
+    color: #14517B;
+  }
   
   .about__description {
     margin: auto;

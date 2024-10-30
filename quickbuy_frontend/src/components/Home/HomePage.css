@@ -21,6 +21,11 @@
     justify-content: space-evenly;
 }
 
+.home-page__product{
+    text-decoration: none;
+    color: black;
+}
+
 .home-page__product-item {
     height: 20rem;
     width: 15rem;

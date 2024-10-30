@@ -22,12 +22,23 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    // public List<Product> findByCatgeory(String category) {
-    // return productRepository.findByCategory(category);
-    // }
-
     public void deleteProduct(int id) {
         productRepository.deleteById(id);
+    }
+
+    public Product updateProduct(Product product) {
+        Product updatedProduct = productRepository.findById(product.getId()).orElse(null);
+        updatedProduct.setName(product.getName());
+        updatedProduct.setBrand(product.getBrand());
+        updatedProduct.setCategory(product.getCategory());
+        updatedProduct.setDescription(product.getDescription());
+        updatedProduct.setGender(product.getGender());
+        updatedProduct.setImageUrl(product.getImageUrl());
+        updatedProduct.setNewlyArrived(product.isNewlyArrived());
+        updatedProduct.setTopSeller(product.isTopSeller());
+        updatedProduct.setPrice(product.getPrice());
+        productRepository.save(updatedProduct);
+        return updatedProduct;
     }
 
 }

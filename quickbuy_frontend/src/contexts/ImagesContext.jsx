@@ -29,7 +29,7 @@ export const ImagesProvider = ({ children }) => {
         api.get("image/findAll")
             .then(response => {
                 dispatch({ type: "FETCH_IMAGES_SUCCESS", payload: response.data });
-                console.log(response.data);
+                // console.log(response.data);
             })
             .catch(error => {
                 dispatch({ type: "FETCH_IMAGES_FAILURE", payload: error.message });

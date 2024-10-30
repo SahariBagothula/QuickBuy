@@ -1,4 +1,6 @@
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
+
 import { ProductsContext, InfoDataContext } from '../../index';
 import Header from '../Header/Header';
 import Hero from '../Hero/Hero';
@@ -8,7 +10,9 @@ import './HomePage.css';
 const HomePage = () => {
 
     const { state: productsState } = useContext(ProductsContext);
+    // console.log(`products: ${productsState?.data} `)
     const { state: dataState } = useContext(InfoDataContext);
+    // console.log(`products2: ${dataState?.data} `)
 
     return (
         <>
@@ -20,23 +24,25 @@ const HomePage = () => {
                     <h3 className="home-page__new-arrivals-subtitle">Recently added clothes!</h3>
                     <ul className="home-page__product-list">
                         {
-                            productsState?.data?.map(({ id, category, description, name, price, imageUrl, gender }) => {
-                                return (
-                                    <li className="home-page__product-item" key={id}>
-                                        <img className="home-page__product-image" src={imageUrl} alt={name} />
-                                        <h3 className="home-page__product-name">{name}</h3>
-                                        <p className="home-page__product-price">{`$${price}`}</p>
-                                    </li>
-                                );
-                            })
+                            productsState?.data?.map(({ id, category, description, name, price, imageUrl, gender, newlyArrived, topSeller, brand }) =>
+                                newlyArrived ? ( // Use a ternary operator
+                                    <Link to={`/productDetails/${id}`} className="home-page__product" key={id}>
+                                        <li className="home-page__product-item">
+                                            <img className="home-page__product-image" src={`http://localhost:8080${imageUrl}`} alt={name} />
+                                            <h3 className="home-page__product-name">{name}</h3>
+                                            <p className="home-page__product-price">{`$${price}`}</p>
+                                        </li>
+                                    </Link>
+                                ) : null // Return null if newlyArrived is false
+                            )
                         }
                     </ul>
+
                 </div>
                 <section className="home-page__info-section">
                     {dataState?.data?.map(({ id, imageUrl, title, description }) => (
                         <div className="home-page__info-item" key={id}>
                             <div className="home-page__info-left">
-                                {console.log(imageUrl)}
                                 <img className="home-page__info-icon" src={`http://localhost:8080${imageUrl}`} alt="icons" />
                             </div>
                             <div className="home-page__info-right">
@@ -51,15 +57,15 @@ const HomePage = () => {
                     <h3 className="home-page__new-arrivals-subtitle">Browse our top-selling products</h3>
                     <ul className="home-page__product-list">
                         {
-                            productsState?.data?.map(({ id, category, description, name, price, imageUrl, gender }) => {
-                                return (
+                            productsState?.data?.map(({ id, category, description, name, price, imageUrl, gender, newlyArrived, topSeller, brand }) =>
+                                topSeller ? (
                                     <li className="home-page__product-item" key={id}>
-                                        <img className="home-page__product-image" src={imageUrl} alt={name} />
+                                        <img className="home-page__product-image" src={`http://localhost:8080${imageUrl}`} alt={name} />
                                         <h3 className="home-page__product-name">{name}</h3>
                                         <p className="home-page__product-price">{`$${price}`}</p>
                                     </li>
-                                );
-                            })
+                                ) : null
+                            )
                         }
                     </ul>
                 </div>

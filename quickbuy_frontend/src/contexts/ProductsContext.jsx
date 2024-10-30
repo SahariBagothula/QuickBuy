@@ -29,7 +29,7 @@ export const ProductsProvider = ({ children }) => {
         api.get('products/findAll')
             .then(response => {
                 dispatch({ type: "FETCH_PRODUCTS_SUCCESS", payload: response.data });
-                console.log(response.data);
+                // console.log(response.data);
             })
             .catch(error => {
                 dispatch({ type: "FETCH_PRODUCTS_FAILURE", payload: error.message });

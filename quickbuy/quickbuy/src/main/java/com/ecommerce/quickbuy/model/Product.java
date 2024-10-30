@@ -1,7 +1,5 @@
 package com.ecommerce.quickbuy.model;
 
-import java.util.List;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,8 +18,7 @@ public class Product {
     private boolean newlyArrived;
     private boolean topSeller;
     private String brand;
-    private List<String> category;
-    private List<String> tags;
+    private String category;
     private String imageUrl;
 
     public int getId() {
@@ -96,20 +93,12 @@ public class Product {
         this.brand = brand;
     }
 
-    public List<String> getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(List<String> category) {
+    public void setCategory(String category) {
         this.category = category;
-    }
-
-    public List<String> getTags() {
-        return tags;
-    }
-
-    public void setTags(List<String> tags) {
-        this.tags = tags;
     }
 
 }

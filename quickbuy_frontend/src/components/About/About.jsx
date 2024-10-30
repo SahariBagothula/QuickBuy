@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from 'react-router-dom';
 import { ImagesContext, TestimonialsContext } from '../../index';
 
 import "./About.css";
@@ -35,11 +36,11 @@ const About = () => {
                 <div className="about__product-showcase">
                     <div className="about__product">
                         <img src={imageUrl2} alt="Product 1" className="about__product-image" />
-                        <button className="about__product-button">Buy Now</button>
+                        <button className="about__product-button"><Link className="about__product-button-link" to='/productsListing'>Buy Now</Link></button>
                     </div>
                     <div className="about__product">
                         <img src={imageUrl3} alt="Product 1" className="about__product-image" />
-                        <button className="about__product-button">Buy Now</button>
+                        <button className="about__product-button"><Link className="about__product-button-link" to='/productsListing'>Buy Now</Link></button>
                     </div>
                 </div>
 

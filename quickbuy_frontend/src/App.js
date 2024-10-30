@@ -1,7 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 
 import HomePage from './components/Home/HomePage';
-import ProductPage from './components/ProductPage';
 import CartPage from './components/Cart/CartPage.jsx';
 import WishlistPage from './components/WishlistPage';
 import CheckoutPage from './components/CheckoutPage';
@@ -24,6 +23,8 @@ import CookiePolicy from "./components/FooterLinks/CookiePolicy";
 import './App.css';
 import About from './components/About/About.jsx';
 import Contact from './components/Contact/Contact.jsx';
+import ProductListingPage from './components/ProductListing/ProductListingPage.jsx';
+import ProductDetails from './components/ProductDetails/ProductDetails.jsx';
 
 
 function App() {
@@ -32,8 +33,9 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path='/about' element={<About />} />
+        <Route path="/productsListing" element={<ProductListingPage />} />
+        <Route path="/productDetails/:productId" element={<ProductDetails />} />
         <Route path='/contact' element={<Contact />} />
-        <Route path="/product/:productId" element={<ProductPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/wishlist" element={<WishlistPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
