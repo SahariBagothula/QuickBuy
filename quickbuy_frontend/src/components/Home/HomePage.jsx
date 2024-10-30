@@ -59,11 +59,13 @@ const HomePage = () => {
                         {
                             productsState?.data?.map(({ id, category, description, name, price, imageUrl, gender, newlyArrived, topSeller, brand }) =>
                                 topSeller ? (
-                                    <li className="home-page__product-item" key={id}>
-                                        <img className="home-page__product-image" src={`http://localhost:8080${imageUrl}`} alt={name} />
-                                        <h3 className="home-page__product-name">{name}</h3>
-                                        <p className="home-page__product-price">{`$${price}`}</p>
-                                    </li>
+                                    <Link to={`/productDetails/${id}`} className="home-page__product" key={id}>
+                                        <li className="home-page__product-item" key={id}>
+                                            <img className="home-page__product-image" src={`http://localhost:8080${imageUrl}`} alt={name} />
+                                            <h3 className="home-page__product-name">{name}</h3>
+                                            <p className="home-page__product-price">{`$${price}`}</p>
+                                        </li>
+                                    </Link>
                                 ) : null
                             )
                         }

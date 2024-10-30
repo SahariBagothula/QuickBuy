@@ -35,7 +35,7 @@
 .home-page__product-image {
    height: 15rem;
    width: 15rem;
-   object-fit: cover;
+   object-fit: contain;
    margin-bottom: 0.5rem;
 }
 
