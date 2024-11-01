@@ -8,7 +8,8 @@ const Wishlist = () => {
     const { state } = useContext(ProductsContext);
 
     const wishlistTotal = state.productsInWishlist.reduce((acc, product) => acc + product.price, 0);
-    const discount = wishlistTotal * 0.1;
+    console.log(wishlistTotal);
+    const discount = Math.round(wishlistTotal * 0.1);
 
     return (
         <>

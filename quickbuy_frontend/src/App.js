@@ -22,7 +22,7 @@ import Contact from './components/Contact/Contact.jsx';
 import ProductListingPage from './components/ProductListing/ProductListingPage.jsx';
 import ProductDetails from './components/ProductDetails/ProductDetails.jsx';
 import Wishlist from './components/Wishlist/Wihslist.jsx';
-import Cart from './components/Cart';
+import Cart from './components/Cart/Cart.jsx';
 
 
 function App() {
