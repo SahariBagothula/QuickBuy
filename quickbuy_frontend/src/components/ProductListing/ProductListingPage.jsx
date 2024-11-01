@@ -9,13 +9,18 @@ import Footer from '../Footer/Footer';
 
 const ProductListingPage = () => {
 
-    const { state: productsState } = useContext(ProductsContext);
+    const { state: productsState, dispatch } = useContext(ProductsContext);
     // console.log(`products: ${productsState?.data} `)
 
     const { state: imagesState } = useContext(ImagesContext);
 
     const heroImage = imagesState.images.find(({ imageHeading }) => imageHeading === 'women');
     const imageUrl = heroImage ? `http://localhost:8080${heroImage.imageUrl}` : '/';
+
+    const searchHandler = () => {
+        dispatch({ type: "SEARCH_PRODUCTS", payload: productsState.enteredText });
+        dispatch({ type: "ENTERED_TEXT", payload: "" });
+    }
 
     return (
         <>
@@ -33,40 +38,91 @@ const ProductListingPage = () => {
 
                 <div className="product-listing-page__content">
                     <aside className="product-listing-page__sidebar">
+
+                        <div className="product-listing-page__sidebar__search">
+                            <label>
+                                <input type="text" value={productsState.enteredText} onChange={(event) => dispatch({ type: 'ENTERED_TEXT', payload: event.target.value })} />
+                            </label>
+                            <button onClick={searchHandler}>search</button>
+                        </div>
+
                         <div className="product-listing-page__sidebar__price-slider">
                             <h4>Price</h4>
                             <input type="range" min="0" max="1000" />
+                            <label>
+                                <input type="radio" name="price" value="lth" onChange={() => dispatch({ type: 'SORT_LOW_TO_HIGH' })} /> Low to high
+                            </label>
+                            <label>
+                                <input type="radio" name="price" value="htl" onChange={() => dispatch({ type: 'SORT_HIGH_TO_LOW' })} /> High to low
+                            </label>
                         </div>
 
                         <div className="product-listing-page__sidebar__brands">
                             <h4>Brands</h4>
                             <label>
-                                <input type="checkbox" name="brand" value="Puma" /> Puma
+                                <input
+                                    type="checkbox"
+                                    name="brand"
+                                    value="puma"
+                                    checked={productsState?.selectedBrands?.includes("puma")}
+                                    onChange={(event) =>
+                                        dispatch({ type: "TOGGLE_BRAND_FILTER", payload: event.target.value.toLowerCase() })
+                                    }
+                                />{" "}
+                                Puma
                             </label>
                             <label>
-                                <input type="checkbox" name="brand" value="USPolo" /> USPolo
+                                <input
+                                    type="checkbox"
+                                    name="brand"
+                                    value="uspolo"
+                                    checked={productsState?.selectedBrands?.includes("uspolo")}
+                                    onChange={(event) =>
+                                        dispatch({ type: "TOGGLE_BRAND_FILTER", payload: event.target.value.toLowerCase() })
+                                    }
+                                />{" "}
+                                USPolo
                             </label>
                             <label>
-                                <input type="checkbox" name="brand" value="Gap" /> Gap
+                                <input
+                                    type="checkbox"
+                                    name="brand"
+                                    value="gap"
+                                    checked={productsState?.selectedBrands?.includes("gap")}
+                                    onChange={(event) =>
+                                        dispatch({ type: "TOGGLE_BRAND_FILTER", payload: event.target.value.toLowerCase() })
+                                    }
+                                />{" "}
+                                Gap
                             </label>
                             <label>
-                                <input type="checkbox" name="brand" value="Vermo Moda" /> Vermo Moda
+                                <input
+                                    type="checkbox"
+                                    name="brand"
+                                    value="veromoda"
+                                    checked={productsState?.selectedBrands?.includes("veromoda")}
+                                    onChange={(event) =>
+                                        dispatch({ type: "TOGGLE_BRAND_FILTER", payload: event.target.value.toLowerCase() })
+                                    }
+                                />{" "}
+                                Vermo Moda
                             </label>
                         </div>
+
 
                         <div className="product-listing-page__sidebar__categories">
                             <h4>Categories</h4>
                             <label>
-                                <input type="checkbox" name="category" value="Shirts" /> Shirts
+                                <input type="checkbox" name="category" value="Shirt" checked={productsState?.selectedCategory?.includes("shirts")} onChange={(event) => dispatch({ type: "TOGGLE_CATEGORY_FILTER", payload: event.target.value.toLowerCase() })} /> Shirts
                             </label>
                             <label>
-                                <input type="checkbox" name="category" value="Tshirts" /> Tshirts
+                                <input type="checkbox" name="category" value="Tshirt" checked={productsState?.selectedCategory?.includes("tshirts")} onChange={(event) => dispatch({ type: "TOGGLE_CATEGORY_FILTER", payload: event.target.value.toLowerCase() })} /> Tshirts
                             </label>
                             <label>
-                                <input type="checkbox" name="category" value="Jackets" /> Jackets
+                                <input type="checkbox" name="category" value="Jacket" checked={productsState?.selectedCategory?.includes("jackets")} onChange={(event) => dispatch({ type: "TOGGLE_CATEGORY_FILTER", payload: event.target.value.toLowerCase() })} /> Jackets
                             </label>
                             <label>
-                                <input type="checkbox" name="category" value="Dresses" /> Dresses
+                                <input type="checkbox" name="category" value="Dress" checked={productsState?.selectedCategory?.includes("dresses")} onChange={(event) => dispatch({ type: "TOGGLE_CATEGORY_FILTER", payload: event.target.value.toLowerCase() })} /> Dresses
                             </label>
                         </div>
                     </aside>
@@ -85,6 +141,7 @@ const ProductListingPage = () => {
                                     />
                                     <h3 className="product-card__name">{product.name}</h3>
                                     <p className="product-card__price">${product.price}</p>
+                                    {product.brand}
                                     {/* <button className="product-card__add-to-cart">Add to Cart</button> */}
                                 </div>
                             </Link>
