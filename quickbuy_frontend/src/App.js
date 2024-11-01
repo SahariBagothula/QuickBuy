@@ -24,6 +24,8 @@ import ProductDetails from './components/ProductDetails/ProductDetails.jsx';
 import Wishlist from './components/Wishlist/Wihslist.jsx';
 import Cart from './components/Cart/Cart.jsx';
 import Checkout from './components/Checkout/Checkout.jsx';
+import SignUp from './components/Signup/Signup.jsx';
+import Login from './components/Login/Login.jsx';
 
 
 function App() {
@@ -53,6 +55,8 @@ function App() {
         <Route path="/cookie-policy" element={<CookiePolicy />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </>
   );
