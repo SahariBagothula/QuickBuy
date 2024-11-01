@@ -1,0 +1,127 @@
+.checkout{
+    margin: 10rem 3rem;
+}
+
+.checkout__heading{
+    font-size: 1rem;
+    font-weight: 100;
+    color: #1D1D1D;
+    text-transform: uppercase;
+    margin: 2rem 0;
+}
+
+.checkout__mainheading{
+    font-size: 2rem;
+    color: #1D1D1D;
+}
+
+.addresses{
+    margin: 5rem 0;
+}
+
+.addresses__heading{
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.addresses_block{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.address{
+    border: 1px solid #EBEBEB;
+    background-color: #fff;
+    color: #555555;
+    height: 15rem;
+    width: 15rem;
+    margin: 1rem;
+    border-radius: 0.25rem;
+}
+
+.address p {
+    margin: 0.75rem 0;
+    color: #555555; 
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.address__text{
+    font-weight: bold;
+}
+
+.addresses_block {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+
+.address {
+    border: 1px solid #EBEBEB;
+    background-color: #fff;
+    color: #555555;
+    height: 15rem;
+    width: 15rem;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.add__address{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+.add__address-heading{
+    font-size: 2rem;
+    color: #1D1D1D;
+    margin-bottom: 1rem;
+}
+
+.address__label{
+    color: #555555;
+    font-size: 1.25rem;
+    height: 2rem;
+    margin-bottom: 0.25rem;
+}
+
+.required {
+    color: red;
+    font-size: 1rem;
+    margin-left: 0.25rem;
+    vertical-align: top;
+}
+
+.address__input{
+    padding: 1rem;
+    border: 1px solid #EBEBEB;
+    margin-bottom: 1.25rem;
+}
+
+.placeorder{
+    height: auto;
+    width: 100%;
+    border: 1px solid #EBEBEB;
+    padding: 2rem;
+}
+
+.placeorder__content{
+    background-color: #FBFBFB;
+    border: 1px solid #EBEBEB;
+    color: #555555;
+    padding: 1.5rem 0.5rem;
+    width: 100%;
+    padding: auto;
+}
+
+.placeorder__button{
+    color: #fff;
+    background-color: #D6763C;
+    height: 3rem;
+    width: 13rem;
+    text-transform: uppercase;
+    border: none;
+    margin: 2rem 0 0 56rem;
+}

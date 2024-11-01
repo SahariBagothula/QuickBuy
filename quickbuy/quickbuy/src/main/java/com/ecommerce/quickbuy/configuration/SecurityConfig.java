@@ -22,7 +22,8 @@ public class SecurityConfig {
                                 "/cart/add", "/cart/findAll", "/cart/remove", "/wishlist/add", "/wishlist/findAll",
                                 "/wishlist/remove", "/wishlist/addToCart", "/order/place", "/order/findAll",
                                 "/order/pay",
-                                "/address/findAll", "/address/add", "/address/remove", "/testimonial/add",
+                                "/address/findAll", "/address/findAllAddresses", "/address/add", "/address/remove",
+                                "/testimonial/add",
                                 "/testimonial/findAll", "/testimonial/update", "/testimonial/delete", "/image/add",
                                 "/image/update", "/image/findAll", "/images/**", "/**", "/data/add", "/data/update",
                                 "/data/delete", "/data/findAll")

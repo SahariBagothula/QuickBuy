@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.ecommerce.quickbuy.dto.AddressDto;
+import com.ecommerce.quickbuy.model.Address;
 import com.ecommerce.quickbuy.service.AddressService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,12 @@ public class AddressController {
     @GetMapping("/findAll")
     public ResponseEntity<List<AddressDto>> getUserAddresses(@RequestParam int userId) {
         List<AddressDto> addresses = addressService.getAddressesByUserId(userId);
+        return ResponseEntity.ok(addresses);
+    }
+
+    @GetMapping("/findAllAddresses")
+    public ResponseEntity<List<Address>> getUserAddresses() {
+        List<Address> addresses = addressService.findAllAddresses();
         return ResponseEntity.ok(addresses);
     }
 

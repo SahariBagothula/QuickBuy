@@ -84,4 +84,9 @@ public class AddressService {
         return convertToAddressDto(address);
     }
 
+    public List<Address> findAllAddresses() {
+        List<Address> addresses = addressRepository.findAll();
+        return addresses;
+    }
+
 }

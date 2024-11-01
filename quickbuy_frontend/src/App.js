@@ -23,6 +23,7 @@ import ProductListingPage from './components/ProductListing/ProductListingPage.j
 import ProductDetails from './components/ProductDetails/ProductDetails.jsx';
 import Wishlist from './components/Wishlist/Wihslist.jsx';
 import Cart from './components/Cart/Cart.jsx';
+import Checkout from './components/Checkout/Checkout.jsx';
 
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
         <Route path="/terms-conditions" element={<TermsConditions />} />
         <Route path="/cookie-policy" element={<CookiePolicy />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </>
   );

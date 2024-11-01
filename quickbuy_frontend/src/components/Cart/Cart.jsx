@@ -1,7 +1,10 @@
 import React, { useContext } from "react";
+import { Link } from 'react-router-dom';
+
 import { ProductsContext } from "../../index";
 import "./Cart.css";
 import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 
 const Cart = () => {
 
@@ -66,9 +69,10 @@ const Cart = () => {
                     <p className="cart__summary-item">Shipping Fees <span className="cart__summary-item-price">FREE!!!</span></p>
                     <div className="cart__divider"></div>
                     <p className="cart__summary-item, cart__total">Cart Value <span className="cart__summary-item-price">{`$${CartTotal - discount}`}</span></p>
-                    <button className="cart__summary-button">Proceed to checkout</button>
+                    <button className="cart__summary-button"><Link to="/checkout" className="cart__summary-button-link">Proceed to checkout</Link></button>
                 </aside>
             </main>
+            <Footer />
         </>
     );
 };

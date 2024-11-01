@@ -67,6 +67,11 @@
     width: 1.5rem;
 }
 
+.cart__summary-button-link{
+    text-decoration: none;
+    color: white;
+}
+
 .cart__product-total{
     color: #555555;
 }
