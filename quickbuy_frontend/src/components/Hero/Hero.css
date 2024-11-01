@@ -22,3 +22,8 @@
     background: none;
     margin-top: 2rem;
 }
+
+.hero__button-link{
+    text-decoration: none;
+    color: white;
+}

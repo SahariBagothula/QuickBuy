@@ -5,7 +5,7 @@ export const ProductsContext = createContext();
 
 export const ProductsProvider = ({ children }) => {
 
-    const initialState = { data: [], productsData: [], enteredText: "", loading: false, error: null, selectedBrands: [], selectedCategories: [] };
+    const initialState = { data: [], productsData: [], enteredText: "", loading: false, error: null, selectedBrands: [], selectedCategories: [], productsInCart: [], productsInWishlist: [] };
 
     const reducer = (state, action) => {
         switch (action.type) {
@@ -33,7 +33,6 @@ export const ProductsProvider = ({ children }) => {
                     : state.productsData.filter(({ brand }) =>
                         updatedBrands.includes(brand.toLowerCase())
                     );
-
                 return {
                     ...state,
                     selectedBrands: updatedBrands,
@@ -51,6 +50,10 @@ export const ProductsProvider = ({ children }) => {
                 return {
                     ...state, selectedCategories: updatedCategories, data: filteredProducts
                 };
+            case "ADD_TO_CART":
+                return { ...state, productsInCart: [...state.productsInCart, state.productsData.find(({ id }) => id === action.payload)] }
+            case "ADD_TO_WISHLIST":
+                return { ...state, productsInWishlist: [...state.productsInWishlist, state.productsData.find(({ id }) => id === action.payload)] }
             default:
                 return state;
         }

@@ -1,4 +1,6 @@
 import React, { useContext } from "react";
+import { Link } from 'react-router-dom';
+
 import { ImagesContext } from '../../index';
 
 import './Hero.css';
@@ -17,7 +19,7 @@ const Hero = () => {
             <div className="hero__background">
                 <div className="hero__content">
                     <h1 className="hero__title">Stylish picks beat the heat</h1>
-                    <button className="hero__button">Shop Now</button>
+                    <button className="hero__button"><Link className="hero__button-link" to='/productsListing'>Shop Now</Link></button>
                 </div>
             </div>
         </section>

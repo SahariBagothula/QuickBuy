@@ -1,11 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+
 import { ProductsContext, ProductsProvider } from './contexts/ProductsContext';
 import { ImagesContext, ImagesProvider } from './contexts/ImagesContext';
 import { TestimonialsContext, TestimonialsProvider } from './contexts/TestimonialsContext';
 import { InfoDataContext, InfoDataProvider } from './contexts/InfoDataContext';
-import { BrowserRouter as Router } from 'react-router-dom';
 
+import './ToastStyles.css';
+import 'react-toastify/dist/ReactToastify.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
@@ -18,7 +22,18 @@ root.render(
       <ProductsProvider>
         <ImagesProvider>
           <TestimonialsProvider>
-            <InfoDataProvider>  <App /></InfoDataProvider>
+            <InfoDataProvider>
+              <App />
+              <ToastContainer
+                position="bottom-right"
+                autoClose={3000} // Auto close after 3 seconds
+                hideProgressBar={false}
+                closeOnClick
+                pauseOnHover
+                draggable
+                pauseOnFocusLoss
+              />
+            </InfoDataProvider>
 
           </TestimonialsProvider>
         </ImagesProvider>

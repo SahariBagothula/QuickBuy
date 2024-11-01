@@ -1,10 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 
 import HomePage from './components/Home/HomePage';
-import CartPage from './components/Cart/CartPage.jsx';
-import WishlistPage from './components/WishlistPage';
-import CheckoutPage from './components/CheckoutPage';
-import OrderSummaryPage from './components/OrderSummaryPage';
 import AboutUs from './components/FooterLinks/AboutUs.jsx';
 import LatestPosts from "./components/FooterLinks/LatestPosts";
 import ContactUs from "./components/FooterLinks/ContactUs";
@@ -25,6 +21,8 @@ import About from './components/About/About.jsx';
 import Contact from './components/Contact/Contact.jsx';
 import ProductListingPage from './components/ProductListing/ProductListingPage.jsx';
 import ProductDetails from './components/ProductDetails/ProductDetails.jsx';
+import Wishlist from './components/Wishlist/Wihslist.jsx';
+import Cart from './components/Cart';
 
 
 function App() {
@@ -36,10 +34,7 @@ function App() {
         <Route path="/productsListing" element={<ProductListingPage />} />
         <Route path="/productDetails/:productId" element={<ProductDetails />} />
         <Route path='/contact' element={<Contact />} />
-        <Route path="/cart" element={<CartPage />} />
-        <Route path="/wishlist" element={<WishlistPage />} />
-        <Route path="/checkout" element={<CheckoutPage />} />
-        <Route path="/order/:id" element={<OrderSummaryPage />} />
+        <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/latest-posts" element={<LatestPosts />} />
         <Route path="/contact-us" element={<ContactUs />} />
@@ -55,6 +50,7 @@ function App() {
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-conditions" element={<TermsConditions />} />
         <Route path="/cookie-policy" element={<CookiePolicy />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </>
   );

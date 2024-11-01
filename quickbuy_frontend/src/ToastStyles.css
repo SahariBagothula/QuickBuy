@@ -1,0 +1,10 @@
+/* ToastStyles.css */
+.custom-toast {
+    background-color: #024E82; /* Change to your desired background color */
+    color: white; /* Change text color */
+}
+
+.custom-toast-error {
+    background-color: #dc3545; /* Change to your desired error background color */
+    color: white; /* Change error text color */
+}
