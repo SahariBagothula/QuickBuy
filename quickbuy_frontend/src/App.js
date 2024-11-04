@@ -26,6 +26,7 @@ import Cart from './components/Cart/Cart.jsx';
 import Checkout from './components/Checkout/Checkout.jsx';
 import SignUp from './components/Signup/Signup.jsx';
 import Login from './components/Login/Login.jsx';
+import OtpVerification from './components/OtpVerification/OtpVerification.jsx';
 
 
 function App() {
@@ -57,6 +58,7 @@ function App() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/verify" element={<OtpVerification />} />
       </Routes>
     </>
   );
