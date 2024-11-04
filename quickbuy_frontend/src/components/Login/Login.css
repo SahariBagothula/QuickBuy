@@ -65,3 +65,25 @@
     text-transform: uppercase;
     margin-top: 2rem;
 }
+
+.swal-popup {
+    font-family: Arial, sans-serif; 
+}
+
+.swal-popup h2 {
+    font-size: 1.5rem;
+}
+
+.swal-popup .swal2-title {
+    color: #3A3939; 
+}
+
+.swal-popup .swal2-content {
+    color: #555555; 
+}
+
+.swal-popup .swal2-confirm {
+    background-color: #D6763C; 
+    color: #fff; 
+}
+

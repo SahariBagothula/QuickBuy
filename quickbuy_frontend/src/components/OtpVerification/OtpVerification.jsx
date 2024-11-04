@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 import "./OtpVerification.css";
 import Header from "../Header/Header";
@@ -17,10 +18,24 @@ const OtpVerification = () => {
                 identifier: identifier,
                 otp: otp
             });
-            alert("Registration successful, you can now shop.")
+            Swal.fire({
+                icon: 'success',
+                title: 'Verification successful!',
+                text: 'Registration successful, you can now shop.',
+                customClass: {
+                    popup: 'swal-popup' // Custom class for additional styling
+                }
+            });
         } catch (error) {
             console.log(`Error response: ${error.response}`);
-            alert(error.response?.data || "An error occurred. Please try again.");
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: error.response?.data || "An error occurred. Please try again.",
+                customClass: {
+                    popup: 'swal-popup' // Custom class for additional styling
+                }
+            });
         }
     }
 

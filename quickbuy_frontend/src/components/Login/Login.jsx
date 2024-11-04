@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 import { ImagesContext } from '../../index';
 import './Login.css';
@@ -24,10 +25,24 @@ const Login = () => {
                 identifier: identifier,
                 password: password
             });
-            alert("Registration successful, you can now shop.")
+            Swal.fire({
+                icon: 'success',
+                title: 'Login successful!',
+                text: 'You can now shop.',
+                customClass: {
+                    popup: 'swal-popup'
+                }
+            });
         } catch (error) {
             console.log(`Error response: ${error.response}`);
-            alert(error.response?.data || "An error occurred. Please try again.");
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: error.response?.data || "An error occurred. Please try again.",
+                customClass: {
+                    popup: 'swal-popup'
+                }
+            });
         }
     }
 

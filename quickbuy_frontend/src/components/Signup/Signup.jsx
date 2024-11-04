@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 import { ImagesContext } from '../../index';
 import './Signup.css';
@@ -33,19 +34,30 @@ const SignUp = () => {
                 gender: gender,
                 password: password,
             });
-            console.log({
-                fullname,
-                username,
-                email,
-                mobilenumber,
-                gender,
-                password,
+            Swal.fire({
+                icon: 'success',
+                title: 'Registartion',
+                text: "Please check your email to complete the registration",
+                customClass: {
+                    popup: 'signup-swal-popup',
+                    title: 'signup-swal-title',
+                    content: 'signup-swal-content',
+                    confirmButton: 'signup-swal-button',
+                },
             });
-
-            alert("Please check your email to complete the registration");
         } catch (error) {
             console.error("Error response:", error.response);
-            alert(error.response?.data || "An error occurred. Please try again.");
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: error.response?.data || "An error has occurred. Please try again. ",
+                customClass: {
+                    popup: 'signup-swal-popup',
+                    title: 'signup-swal-title',
+                    content: 'signup-swal-content',
+                    confirmButton: 'signup-swal-button',
+                },
+            });
         }
     }
 
