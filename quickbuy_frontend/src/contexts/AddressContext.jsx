@@ -5,7 +5,7 @@ export const AddressContext = createContext();
 
 export const AddressProvider = ({ children }) => {
 
-    const initialState = { data: [] };
+    const initialState = { data: [], modal: false };
 
     const reducer = (state, action) => {
         switch (action.type) {
@@ -15,6 +15,8 @@ export const AddressProvider = ({ children }) => {
                 return { ...state, data: action.payload, loading: false };
             case "FETCH_PRODUCTS_FAILED":
                 return { ...state, error: action.payload, loading: false };
+            case "TOGGLE_MODAL":
+                return { ...state, modal: !state.modal };
             default:
                 return state;
         }

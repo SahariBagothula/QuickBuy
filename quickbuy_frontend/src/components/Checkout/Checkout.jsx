@@ -5,7 +5,7 @@ import './Checkout.css';
 
 const Checkout = () => {
 
-    const { state } = useContext(AddressContext);
+    const { state, dispatch } = useContext(AddressContext);
 
     return (
         <>
@@ -61,7 +61,12 @@ const Checkout = () => {
                 </section>
                 <section className='placeorder'>
                     <p className='placeorder__content'>Cash on delivery. Please contact us if you require assistance or wish to make alternate arrangements.</p>
-                    <button className='placeorder__button'>Place order</button>
+                    <button onClick={() => dispatch({ type: 'TOGGLE_MODAL' })} className='placeorder__button'>Place order</button>
+                    <div className='modal'>
+                        <div className='overlay'>
+                            <h1>Order placed successfully</h1>
+                        </div>
+                    </div>
                 </section>
             </main>
         </>

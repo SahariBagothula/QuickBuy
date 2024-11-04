@@ -28,16 +28,34 @@ const SignUp = () => {
                     <h2 className="signup__heading">Create Your Account</h2>
                     <form className="signup__form">
                         <div className="signup__form-group">
+                            <label className="signup__label" htmlFor="fullname">Fullname</label>
+                            <input className="signup__input" type="text" id="fullname" required />
+                        </div>
+                        <div className="signup__form-group">
                             <label className="signup__label" htmlFor="username">Username</label>
-                            <input className="signup__input" type="text" id="username" />
+                            <input className="signup__input" type="text" id="username" required />
                         </div>
                         <div className="signup__form-group">
                             <label className="signup__label" htmlFor="email">Email</label>
-                            <input className="signup__input" type="email" id="email" />
+                            <input className="signup__input" type="email" id="email" required />
+                        </div>
+                        <div className="signup__form-group">
+                            <label className="signup__label" htmlFor="mobile">Mobile number</label>
+                            <input className="signup__input" type="tel" id="mobile" pattern="[0-9]{10}" required />
+                        </div>
+
+                        <div className="signup__form-group">
+                            <label className="signup__label" htmlFor="gender">Gender:</label>
+                            <select id="gender" name="gender" className="signup__input">
+                                <option value="male">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="others">Others</option>
+                            </select>
                         </div>
                         <div className="signup__form-group">
                             <label className="signup__label" htmlFor="password">Password</label>
-                            <input className="signup__input" type="password" id="password" />
+                            <input className="signup__input" type="password" id="password" required />
                         </div>
                         <button className="signup__button" type="submit">Sign Up</button>
                     </form>
