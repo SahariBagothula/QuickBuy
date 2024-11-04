@@ -27,6 +27,7 @@ import Checkout from './components/Checkout/Checkout.jsx';
 import SignUp from './components/Signup/Signup.jsx';
 import Login from './components/Login/Login.jsx';
 import OtpVerification from './components/OtpVerification/OtpVerification.jsx';
+import { RequiresAuthentication } from './RequiresAuthentication.jsx';
 
 
 function App() {
@@ -36,7 +37,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path='/about' element={<About />} />
         <Route path="/productsListing" element={<ProductListingPage />} />
-        <Route path="/productDetails/:productId" element={<ProductDetails />} />
+        <Route path="/productDetails/:productId" element={<RequiresAuthentication><ProductDetails /></RequiresAuthentication>} />
         <Route path='/contact' element={<Contact />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/about-us" element={<AboutUs />} />

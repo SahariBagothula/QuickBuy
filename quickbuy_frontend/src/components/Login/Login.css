@@ -25,6 +25,7 @@
     font-size: 2.25rem;
     color: #3A3939;
     margin-bottom: 1.5rem;
+    text-align: center;
 }
 
 .login__text {
@@ -65,6 +66,20 @@
     text-transform: uppercase;
     margin-top: 2rem;
 }
+
+.login__signup-text {
+    margin-top: 1.5rem;
+    color: #555555;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.login__signup-link {
+    color: #D6763C; 
+    text-decoration: none;
+    cursor: pointer;
+}
+
 
 .swal-popup {
     font-family: Arial, sans-serif; 

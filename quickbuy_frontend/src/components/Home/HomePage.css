@@ -6,12 +6,14 @@
 .home-page__new-arrivals-title {
     font-size: 2.5em;
     margin-bottom: 0.75rem;
+    color: #1D1D1D;
 }
 
 .home-page__new-arrivals-subtitle {
     font-size: 1.5em;
     margin-bottom: 1.5rem;
     font-weight: 100;
+    color: #1D1D1D;
 }
 
 .home-page__product-list {
@@ -23,25 +25,27 @@
 
 .home-page__product{
     text-decoration: none;
-    color: black;
 }
 
 .home-page__product-item {
-    height: 20rem;
-    width: 15rem;
-    margin: 0 0 2rem 0;
+    height: 21rem;
+    width: 13rem;
+    margin: 2rem;
+      /* border: 1px solid black; */
 }
 
 .home-page__product-image {
-   height: 15rem;
-   width: 15rem;
-   object-fit: contain;
+   height: 16rem;
+   width: 13rem;
+   /* object-fit: contain; */
    margin-bottom: 0.5rem;
 }
 
 .home-page__product-name {
     font-size: 1.2rem;
-    margin-bottom: 0.5rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+    color: #1D1D1D;
 }
 
 .home-page__product-price {
@@ -56,7 +60,7 @@
 
 .home-page__info-item{
     /* border: 1px solid black; */
-    width: 15rem;
+    width: 17rem;
     height: 8rem;
     display: flex;
     align-items: center;

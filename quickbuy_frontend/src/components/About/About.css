@@ -75,6 +75,7 @@
   .about__testimonials-heading{
       font-size: 2rem;
       text-align: center;
+      color: #1D1D1D;
   }
   
   
@@ -106,6 +107,6 @@
   
   .about__testimonial-name {
     font-size: 1.25rem;
-    color: #000;
+    color: #1D1D1D;
   }
   

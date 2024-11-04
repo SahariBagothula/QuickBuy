@@ -19,9 +19,9 @@ const HomePage = () => {
             <Header />
             <Hero />
             <div>
-                <div className="home-page__new-arrivals">
+                <div className="home-page__new-arrivals poppins-medium">
                     <h2 className="home-page__new-arrivals-title">Discover NEW Arrivals</h2>
-                    <h3 className="home-page__new-arrivals-subtitle">Recently added clothes!</h3>
+                    <h3 className="home-page__new-arrivals-subtitle ">Recently added clothes!</h3>
                     <ul className="home-page__product-list">
                         {
                             productsState?.data?.map(({ id, category, description, name, price, imageUrl, gender, newlyArrived, topSeller, brand }) =>
@@ -39,7 +39,7 @@ const HomePage = () => {
                     </ul>
 
                 </div>
-                <section className="home-page__info-section">
+                <section className="home-page__info-section poppins-medium ">
                     {dataState?.data?.map(({ id, imageUrl, title, description }) => (
                         <div className="home-page__info-item" key={id}>
                             <div className="home-page__info-left">
@@ -47,12 +47,12 @@ const HomePage = () => {
                             </div>
                             <div className="home-page__info-right">
                                 <h4 className="home-page__info-title">{title}</h4>
-                                <p className="home-page__info-description">{description}</p>
+                                <p className="home-page__info-description poppins-regular">{description}</p>
                             </div>
                         </div>
                     ))}
                 </section>
-                <div className="home-page__new-arrivals">
+                <div className="home-page__new-arrivals poppins-medium">
                     <h2 className="home-page__new-arrivals-title">Top Sellers</h2>
                     <h3 className="home-page__new-arrivals-subtitle">Browse our top-selling products</h3>
                     <ul className="home-page__product-list">

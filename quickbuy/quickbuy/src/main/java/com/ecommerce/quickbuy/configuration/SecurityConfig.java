@@ -18,6 +18,7 @@ public class SecurityConfig {
                 .csrf().disable() // Disable CSRF protection for testing (not recommended for production)
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/user/**", "/user/register", "/user/verifyOtp", "/user/login",
+                                "/user/findById",
                                 "/products/add", "/products/findAll", "/products/update", "/products/delete",
                                 "/cart/add", "/cart/findAll", "/cart/remove", "/wishlist/add", "/wishlist/findAll",
                                 "/wishlist/remove", "/wishlist/addToCart", "/order/place", "/order/findAll",

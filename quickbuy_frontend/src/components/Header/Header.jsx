@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { ImagesContext } from '../../index';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import './Header.css';
 
@@ -23,17 +23,23 @@ const Header = () => {
         <>
             <header className="header">
                 <div className="header__heading">
-                    <Link to="/" className="header__heading-text">QuickBuy</Link>
+                    <NavLink to="/" className="header__heading-text poppins-semibold">QuickBuy</NavLink>
                 </div>
-                <ul className="header__nav">
-                    <li className="header__nav-item"><Link to='/' className="header__nav-link">Home</Link></li>
-                    <li className="header__nav-item"><Link to='/about' className="header__nav-link">About</Link></li>
-                    <li className="header__nav-item"><Link to='/contact' className="header__nav-link">Contact us</Link></li>
+                <ul className="header__nav poppins-black">
+                    <li className="header__nav-item"><NavLink to='/' className="header__nav-link" style={({ isActive }) => ({
+                        color: isActive ? "#024E82" : "#1D1D1D"
+                    })}>Home</NavLink></li>
+                    <li className="header__nav-item"><NavLink to='/about' className="header__nav-link" style={({ isActive }) => ({
+                        color: isActive ? "#024E82" : "#1D1D1D"
+                    })} >About</NavLink></li>
+                    <li className="header__nav-item"><NavLink to='/contact' className="header__nav-link" style={({ isActive }) => ({
+                        color: isActive ? "#024E82" : "#1D1D1D"
+                    })}>Contact us</NavLink></li>
                 </ul>
                 <ul className="header__nav header__nav--secondary">
-                    <li className="header__nav-item"><Link to="/wishlist" className="header__nav-link"><img src={imageUrl1} alt='icon' /></Link></li>
-                    <li className="header__nav-item"><Link to="/cart" className="header__nav-link"><img src={imageUrl2} alt='icon' /></Link></li>
-                    <li className="header__nav-item"><Link to="/login" className="header__nav-link"><img src={imageUrl3} alt='icon' /></Link></li>
+                    <li className="header__nav-item"><NavLink to="/wishlist" className="header__nav-link"><img src={imageUrl1} alt='icon' /></NavLink></li>
+                    <li className="header__nav-item"><NavLink to="/cart" className="header__nav-link"><img src={imageUrl2} alt='icon' /></NavLink></li>
+                    <li className="header__nav-item"><NavLink to="/login" className="header__nav-link"><img src={imageUrl3} alt='icon' /></NavLink></li>
                 </ul>
             </header>
         </>

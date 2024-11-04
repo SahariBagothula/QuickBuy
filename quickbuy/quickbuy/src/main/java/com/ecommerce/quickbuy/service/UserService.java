@@ -75,6 +75,11 @@ public class UserService {
 
     }
 
+    public User findUserById(int userId) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException("User with the ID " + userId + " not found. "));
+    }
+
     public String loginUser(LoginDto loginDto) {
 
         User user = userRepository.findByEmailOrUsername(loginDto.getIdentifier(), loginDto.getIdentifier())

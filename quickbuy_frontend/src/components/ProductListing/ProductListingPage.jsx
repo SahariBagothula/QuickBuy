@@ -81,31 +81,31 @@ const ProductListingPage = () => {
                                         dispatch({ type: "TOGGLE_BRAND_FILTER", payload: event.target.value.toLowerCase() })
                                     }
                                 />{" "}
-                                USPolo
+                                U.S. Polo Assn.
                             </label>
                             <label>
                                 <input
                                     type="checkbox"
                                     name="brand"
-                                    value="gap"
-                                    checked={productsState?.selectedBrands?.includes("gap")}
+                                    value="nike"
+                                    checked={productsState?.selectedBrands?.includes("nike")}
                                     onChange={(event) =>
                                         dispatch({ type: "TOGGLE_BRAND_FILTER", payload: event.target.value.toLowerCase() })
                                     }
                                 />{" "}
-                                Gap
+                                Nike
                             </label>
                             <label>
                                 <input
                                     type="checkbox"
                                     name="brand"
-                                    value="veromoda"
-                                    checked={productsState?.selectedBrands?.includes("veromoda")}
+                                    value="denim"
+                                    checked={productsState?.selectedBrands?.includes("denim")}
                                     onChange={(event) =>
                                         dispatch({ type: "TOGGLE_BRAND_FILTER", payload: event.target.value.toLowerCase() })
                                     }
                                 />{" "}
-                                Vermo Moda
+                                Denim
                             </label>
                         </div>
 

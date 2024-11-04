@@ -74,8 +74,8 @@ const SignUp = () => {
                     />
                 </div>
                 <div className="signup__form-container">
-                    <h2 className="signup__heading">Create Your Account</h2>
-                    <form className="signup__form">
+                    <h2 className="signup__heading poppins-semibold">Create Your Account</h2>
+                    <form className="signup__form poppins-semibold">
                         <div className="signup__form-group">
                             <label className="signup__label" htmlFor="fullname">Fullname</label>
                             <input className="signup__input" type="text" id="fullname" required value={fullname} onChange={(e) => setFullname(e.target.value)} />
@@ -106,7 +106,7 @@ const SignUp = () => {
                             <label className="signup__label" htmlFor="password">Password</label>
                             <input className="signup__input" type="password" id="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
                         </div>
-                        <button className="signup__button" type="submit" onClick={save}>Sign Up</button>
+                        <button className="signup__button poppins-semibold" type="submit" onClick={save}>Sign Up</button>
                     </form>
                 </div>
             </div>

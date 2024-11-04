@@ -44,12 +44,12 @@ const Contact = () => {
                     background: `url(${imageUrl})`, backgroundSize: 'cover',
                     backgroundPosition: 'center'
                 }}>
-                    <h1 className="contact__hero-text">Contact Us</h1>
+                    <h1 className="contact__hero-text poppins-bold">Contact Us</h1>
                 </div>
-                <div className="contact__content">
+                <div className="contact__content poppins-medium ">
                     <form ref={form} onSubmit={sendEmail}>
                         <div className="contact__content-left">
-                            <h2 className="contact__heading">We would love to hear from you</h2>
+                            <h2 className="contact__heading ">We would love to hear from you</h2>
                             <p className="contact__text">
                                 If you have any query or any type of suggestion, you can contact us here.
                             </p>
@@ -68,7 +68,7 @@ const Contact = () => {
                                 </div>
 
                             </div>
-                            <button type="submit" value="Send" className="contact__button">Send Message</button>
+                            <button type="submit" value="Send" className="contact__button poppins-regular">Send Message</button>
                         </div>
                     </form>
                     <div className="contact__content-right">

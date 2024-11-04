@@ -30,27 +30,27 @@ const About = () => {
                         alt="About QuickBuy"
                         className="about__header-image"
                     />
-                    <h1 className="about__header-text">About QuickBuy</h1>
+                    <h1 className="about__header-text poppins-bold">About QuickBuy</h1>
                 </div>
 
-                <div className="about__product-showcase">
+                <div className="about__product-showcase ">
                     <div className="about__product">
                         <img src={imageUrl2} alt="Product 1" className="about__product-image" />
-                        <button className="about__product-button"><Link className="about__product-button-link" to='/productsListing'>Buy Now</Link></button>
+                        <button className="about__product-button"><Link className="about__product-button-link poppins-regular" to='/productsListing'>Buy Now</Link></button>
                     </div>
                     <div className="about__product">
                         <img src={imageUrl3} alt="Product 1" className="about__product-image" />
-                        <button className="about__product-button"><Link className="about__product-button-link" to='/productsListing'>Buy Now</Link></button>
+                        <button className="about__product-button"><Link className="about__product-button-link poppins-regular" to='/productsListing'>Buy Now</Link></button>
                     </div>
                 </div>
 
-                <div className="about__description">
+                <div className="about__description poppins-regular">
                     <p>
                         Welcome to QuickBuy! We offer a wide range of stylish and trendy clothing for both men and women. Our collection is updated with the latest trends to keep you looking fashionable at all times.
                     </p>
                 </div>
 
-                <div className="about__testimonials">
+                <div className="about__testimonials poppins-regular">
                     <h1 className="about__testimonials-heading">Testimonials</h1>
                     {
                         testimonialsState?.data?.map(({ id, imageUrl, message, name }) => {
