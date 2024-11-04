@@ -1,4 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import axios from 'axios';
+
 import { ImagesContext } from '../../index';
 import './Signup.css';
 import Header from "../Header/Header";
@@ -11,7 +13,42 @@ const SignUp = () => {
 
     const heroImage = imagesState?.images?.find(({ imageHeading }) => imageHeading === 'signup');
     const imageUrl = heroImage ? `http://localhost:8080${heroImage.imageUrl}` : '/';
-    console.log(imageUrl)
+    // console.log(imageUrl)
+
+    const [fullname, setFullname] = useState("");
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [mobilenumber, setMobilenumber] = useState("");
+    const [gender, setGender] = useState("");
+    const [password, setPassword] = useState("");
+
+    const save = async (event) => {
+        event.preventDefault();
+        try {
+            await axios.post("http://localhost:8080/user/register", {
+                fullname: fullname,
+                username: username,
+                email: email,
+                mobilenumber: mobilenumber,
+                gender: gender,
+                password: password,
+            });
+            console.log({
+                fullname,
+                username,
+                email,
+                mobilenumber,
+                gender,
+                password,
+            });
+
+            alert("Please check your email to complete the registration");
+        } catch (error) {
+            console.error("Error response:", error.response);
+            alert(error.response?.data || "An error occurred. Please try again.");
+        }
+    }
+
 
     return (
         <>
@@ -29,25 +66,25 @@ const SignUp = () => {
                     <form className="signup__form">
                         <div className="signup__form-group">
                             <label className="signup__label" htmlFor="fullname">Fullname</label>
-                            <input className="signup__input" type="text" id="fullname" required />
+                            <input className="signup__input" type="text" id="fullname" required value={fullname} onChange={(e) => setFullname(e.target.value)} />
                         </div>
                         <div className="signup__form-group">
                             <label className="signup__label" htmlFor="username">Username</label>
-                            <input className="signup__input" type="text" id="username" required />
+                            <input className="signup__input" type="text" id="username" required value={username} onChange={(e) => setUsername(e.target.value)} />
                         </div>
                         <div className="signup__form-group">
                             <label className="signup__label" htmlFor="email">Email</label>
-                            <input className="signup__input" type="email" id="email" required />
+                            <input className="signup__input" type="email" id="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
                         </div>
                         <div className="signup__form-group">
                             <label className="signup__label" htmlFor="mobile">Mobile number</label>
-                            <input className="signup__input" type="tel" id="mobile" pattern="[0-9]{10}" required />
+                            <input className="signup__input" type="tel" id="mobile" pattern="[0-9]{10}" required value={mobilenumber} onChange={(e) => setMobilenumber(e.target.value)} />
                         </div>
 
                         <div className="signup__form-group">
                             <label className="signup__label" htmlFor="gender">Gender:</label>
-                            <select id="gender" name="gender" className="signup__input">
-                                <option value="male">Select Gender</option>
+                            <select id="gender" name="gender" className="signup__input" value={gender} onChange={(e) => setGender(e.target.value)}>
+                                <option value="" disabled>Select Gender</option>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
                                 <option value="others">Others</option>
@@ -55,9 +92,9 @@ const SignUp = () => {
                         </div>
                         <div className="signup__form-group">
                             <label className="signup__label" htmlFor="password">Password</label>
-                            <input className="signup__input" type="password" id="password" required />
+                            <input className="signup__input" type="password" id="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
                         </div>
-                        <button className="signup__button" type="submit">Sign Up</button>
+                        <button className="signup__button" type="submit" onClick={save}>Sign Up</button>
                     </form>
                 </div>
             </div>

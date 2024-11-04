@@ -8,13 +8,14 @@ import { ImagesContext, ImagesProvider } from './contexts/ImagesContext';
 import { TestimonialsContext, TestimonialsProvider } from './contexts/TestimonialsContext';
 import { InfoDataContext, InfoDataProvider } from './contexts/InfoDataContext';
 import { AddressContext, AddressProvider } from './contexts/AddressContext';
+import { RegistrationContext, RegistartionProvider } from './contexts/RegistrationContext';
 
 import './ToastStyles.css';
 import 'react-toastify/dist/ReactToastify.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-export { ProductsContext, ImagesContext, TestimonialsContext, InfoDataContext, AddressContext };
+export { ProductsContext, ImagesContext, TestimonialsContext, InfoDataContext, AddressContext, RegistrationContext };
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -25,16 +26,18 @@ root.render(
           <TestimonialsProvider>
             <InfoDataProvider>
               <AddressProvider>
-                <App />
-                <ToastContainer
-                  position="bottom-right"
-                  autoClose={3000} // Auto close after 3 seconds
-                  hideProgressBar={false}
-                  closeOnClick
-                  pauseOnHover
-                  draggable
-                  pauseOnFocusLoss
-                />
+                <RegistartionProvider>
+                  <App />
+                  <ToastContainer
+                    position="bottom-right"
+                    autoClose={3000} // Auto close after 3 seconds
+                    hideProgressBar={false}
+                    closeOnClick
+                    pauseOnHover
+                    draggable
+                    pauseOnFocusLoss
+                  />
+                </RegistartionProvider>
               </AddressProvider>
             </InfoDataProvider>
 

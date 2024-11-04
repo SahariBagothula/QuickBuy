@@ -27,7 +27,7 @@ public class AddressService {
         dto.setHouseNumber(address.getHouseNumber());
         dto.setStreet(address.getStreet());
         dto.setCity(address.getCity());
-        dto.setState(address.getState());
+        dto.setStateName(address.getStateName());
         dto.setPincode(address.getPincode());
         dto.setCountry(address.getCountry());
 
@@ -43,7 +43,7 @@ public class AddressService {
         address.setHouseNumber(dto.getHouseNumber());
         address.setStreet(dto.getStreet());
         address.setCity(dto.getCity());
-        address.setState(dto.getState());
+        address.setStateName(dto.getStateName());
         address.setPincode(dto.getPincode());
         address.setCountry(dto.getCountry());
 

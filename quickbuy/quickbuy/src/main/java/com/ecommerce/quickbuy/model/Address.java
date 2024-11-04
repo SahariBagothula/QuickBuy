@@ -22,7 +22,7 @@ public class Address {
     private String houseNumber;
     private String street;
     private String city;
-    private String state;
+    private String stateName;
     private String pincode;
     private String country;
 
@@ -66,14 +66,6 @@ public class Address {
         this.city = city;
     }
 
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
     public String getPincode() {
         return pincode;
     }
@@ -88,6 +80,14 @@ public class Address {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public String getStateName() {
+        return stateName;
+    }
+
+    public void setStateName(String stateName) {
+        this.stateName = stateName;
     }
 
 }

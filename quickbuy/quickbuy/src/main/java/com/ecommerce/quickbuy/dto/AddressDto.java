@@ -6,7 +6,7 @@ public class AddressDto {
     private String houseNumber;
     private String street;
     private String city;
-    private String state;
+    private String stateName;
     private String pincode;
     private String country;
     private int userId;
@@ -44,14 +44,6 @@ public class AddressDto {
         this.city = city;
     }
 
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
     public String getPincode() {
         return pincode;
     }
@@ -82,6 +74,14 @@ public class AddressDto {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getStateName() {
+        return stateName;
+    }
+
+    public void setStateName(String stateName) {
+        this.stateName = stateName;
     }
 
 }

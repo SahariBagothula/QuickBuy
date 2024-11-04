@@ -1,4 +1,6 @@
-import { useContext } from 'react';
+import React, { useContext, useState } from "react";
+import axios from 'axios';
+
 import { AddressContext } from '../../contexts/AddressContext';
 import Header from '../Header/Header';
 import './Checkout.css';
@@ -6,6 +8,33 @@ import './Checkout.css';
 const Checkout = () => {
 
     const { state, dispatch } = useContext(AddressContext);
+
+    const [userId, setuserId] = useState("");
+    const [houseNumber, setHouseNumber] = useState("");
+    const [street, setStreet] = useState("");
+    const [city, setCity] = useState("");
+    const [stateName, setStateName] = useState("");
+    const [pincode, setPincode] = useState("");
+    const [country, setCountry] = useState("");
+
+    const saveDetails = async (event) => {
+        event.preventDefault();
+        try {
+            await axios.post("http://localhost:8080/address/add", {
+                userId: userId,
+                houseNumber: houseNumber,
+                street: street,
+                city: city,
+                stateName: stateName,
+                pincode: pincode,
+                country: country,
+            });
+            alert("Address saved successfully");
+        } catch (error) {
+            console.error("Error response:", error.response);
+            alert(error.response?.data || "An error occurred. Please try again.");
+        }
+    }
 
     return (
         <>
@@ -34,29 +63,33 @@ const Checkout = () => {
                 </section>
                 <section className="add__address">
                     <h1 className="add__address-heading">Add address</h1>
+                    <label className="address__label">User id
+                        <span className="required">*</span>  </label>
+                    <input type="text" className="address__input" value={userId} onChange={(e) => setuserId(e.target.value)} />
                     <label className="address__label">HouseNumber
                         <span className="required">*</span>  </label>
-                    <input type="text" className="address__input" />
+                    <input type="text" className="address__input" value={houseNumber} onChange={(e) => setHouseNumber(e.target.value)} />
 
                     <label className="address__label">Street
                         <span className="required">*</span>  </label>
-                    <input type="text" className="address__input" />
+                    <input type="text" className="address__input" value={street} onChange={(e) => setStreet(e.target.value)} />
 
                     <label className="address__label">City
                         <span className="required">*</span> </label>
-                    <input type="text" className="address__input" />
+                    <input type="text" className="address__input" value={city} onChange={(e) => setCity(e.target.value)} />
 
                     <label className="address__label">Pincode
                         <span className="required">*</span></label>
-                    <input type="number" className="address__input" />
+                    <input type="number" className="address__input" value={pincode} onChange={(e) => setPincode(e.target.value)} />
 
                     <label className="address__label">State
                         <span className="required">*</span> </label>
-                    <input type="text" className="address__input" />
+                    <input type="text" className="address__input" value={stateName} onChange={(e) => setStateName(e.target.value)} />
 
                     <label className="address__label">Country
                         <span className="required">*</span> </label>
-                    <input type="text" className="address__input" />
+                    <input type="text" className="address__input" value={country} onChange={(e) => setCountry(e.target.value)} />
+                    <button className="signup__button" type="submit" onClick={saveDetails}>Save address</button>
 
                 </section>
                 <section className='placeorder'>
