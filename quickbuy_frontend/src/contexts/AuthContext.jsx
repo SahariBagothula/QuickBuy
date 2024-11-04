@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
 
         dispatch({ type: "FETCH_DETAILS_REQUEST" });
 
-        api.get("user/findById/10")
+        api.get("user/findById/7")
             .then(response => {
                 dispatch({ type: "FETCH_DETAILS_SUCCESS", payload: response.data });
                 console.log(response.data);

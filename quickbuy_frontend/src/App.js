@@ -37,7 +37,8 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path='/about' element={<About />} />
         <Route path="/productsListing" element={<ProductListingPage />} />
-        <Route path="/productDetails/:productId" element={<RequiresAuthentication><ProductDetails /></RequiresAuthentication>} />
+        {/* <Route path="/productDetails/:productId" element={<RequiresAuthentication><ProductDetails /></RequiresAuthentication>} /> */}
+        <Route path="/productDetails/:productId" element={<ProductDetails />} />
         <Route path='/contact' element={<Contact />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/about-us" element={<AboutUs />} />

@@ -36,11 +36,11 @@ const ProductDetails = () => {
                         <img src={`http://localhost:8080${product?.imageUrl}`} alt={product?.name} className="product-listing__image-src" />
                     </div>
                     <div className="product-listing__details">
-                        <h1 className="product-listing__name">{product?.name}</h1>
-                        <p className="product-listing__price">{`$${product?.price}`}</p>
-                        <p className="product-listing__description">{product?.description}</p>
+                        <h1 className="product-listing__name poppins-bold">{product?.name}</h1>
+                        <p className="product-listing__price poppins-regular">{`$${product?.price}`}</p>
+                        <p className="product-listing__description poppins-regular">{product?.description}</p>
                         <div className="product-listing__size-select">
-                            <select id="size-select" className="product-listing__size-dropdown">
+                            <select id="size-select" className="product-listing__size-dropdown poppins-regular">
                                 <option value="">Select Size</option>
                                 <option value="s">S</option>
                                 <option value="m">M</option>
@@ -48,8 +48,8 @@ const ProductDetails = () => {
                                 <option value="xl">XL</option>
                             </select>
                         </div>
-                        <button className="product-listing__add-to-cart" onClick={() => handleAddToWishlist(product.id)}>Add to Wishlist</button>
-                        <button className="product-listing__add-to-cart" onClick={() => handleAddToCart(product.id)}>Add to Cart</button>
+                        <button className="product-listing__add-to-cart poppins-semibold" onClick={() => handleAddToCart(product.id)}>Add to Cart</button>
+                        <button className="product-listing__add-to-cart poppins-semibold" onClick={() => handleAddToWishlist(product.id)}>Add to Wishlist</button>
                     </div>
                 </div>
             </div>
