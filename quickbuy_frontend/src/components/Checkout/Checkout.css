@@ -126,3 +126,24 @@
     border: none;
     margin: 2rem 0 0 56rem;
 }
+
+.my-popup {
+    background-color: #D6763C; 
+    border-radius: 10px; 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); 
+}
+
+.my-popup-title {
+    color: #fff; 
+    font-size: 1.5rem; 
+}
+
+.my-popup-content {
+    font-size: 1rem; 
+    color: #fff; 
+}
+
+.my-popup-confirm-button {
+    background-color: #4caf50; 
+    color: white; 
+}

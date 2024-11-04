@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 import { AddressContext } from '../../contexts/AddressContext';
 import Header from '../Header/Header';
@@ -34,7 +35,25 @@ const Checkout = () => {
             console.error("Error response:", error.response);
             alert(error.response?.data || "An error occurred. Please try again.");
         }
+
     }
+
+    const showModal = () => {
+        Swal.fire({
+            title: "Order placed successfully",
+            text: "Your order has been placed and will be processed shortly.",
+            icon: "success",
+            customClass: {
+                popup: 'my-popup', // Add your custom class here
+                title: 'my-popup-title',
+                content: 'my-popup-content',
+                confirmButton: 'my-popup-confirm-button',
+            },
+            confirmButtonText: 'OK',
+        });
+    };
+
+
 
     return (
         <>
@@ -94,12 +113,7 @@ const Checkout = () => {
                 </section>
                 <section className='placeorder'>
                     <p className='placeorder__content'>Cash on delivery. Please contact us if you require assistance or wish to make alternate arrangements.</p>
-                    <button onClick={() => dispatch({ type: 'TOGGLE_MODAL' })} className='placeorder__button'>Place order</button>
-                    <div className='modal'>
-                        <div className='overlay'>
-                            <h1>Order placed successfully</h1>
-                        </div>
-                    </div>
+                    <button onClick={() => showModal()} className='placeorder__button'>Place order</button>
                 </section>
             </main>
         </>
