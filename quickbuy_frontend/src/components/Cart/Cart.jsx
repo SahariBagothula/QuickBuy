@@ -9,7 +9,6 @@ import Footer from "../Footer/Footer";
 const Cart = () => {
 
     const { state } = useContext(ProductsContext);
-    console.log(state?.productsInCart);
 
     const CartTotal = state.productsInCart.reduce((acc, product) => acc + product.price, 0);
     const discount = CartTotal * 0.1;

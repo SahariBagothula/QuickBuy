@@ -1,16 +1,24 @@
 package com.ecommerce.quickbuy.configuration;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import com.ecommerce.quickbuy.filter.JwtRequestFilter;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
+    @Autowired
+    private JwtRequestFilter jwtRequestFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -28,13 +36,10 @@ public class SecurityConfig {
                                 "/testimonial/findAll", "/testimonial/update", "/testimonial/delete", "/image/add",
                                 "/image/update", "/image/findAll", "/images/**", "/**", "/data/add", "/data/update",
                                 "/data/delete", "/data/findAll")
-                        .permitAll() // Allow
-                        // public
-                        // access to
-                        // these
-                        // endpoints
+                        .permitAll()
                         .anyRequest().authenticated() // Require authentication for all other requests
-                );
+                )
+                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

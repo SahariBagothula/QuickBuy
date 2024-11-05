@@ -9,8 +9,6 @@ const Wishlist = () => {
 
     const { state } = useContext(ProductsContext);
 
-    console.log(state?.productsInWishlist);
-
     return (
         <>
             <Header />

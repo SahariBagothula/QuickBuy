@@ -14,6 +14,7 @@ import com.ecommerce.quickbuy.exception.UserNotActivatedException;
 import com.ecommerce.quickbuy.exception.UserNotFoundException;
 import com.ecommerce.quickbuy.model.User;
 import com.ecommerce.quickbuy.repository.UserRepository;
+import com.ecommerce.quickbuy.util.JwtUtil;
 
 @Service
 public class UserService {
@@ -23,6 +24,9 @@ public class UserService {
 
     @Autowired
     private OtpService otpService;
+
+    @Autowired
+    private JwtUtil jwtUtil;
 
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
@@ -55,7 +59,7 @@ public class UserService {
 
     }
 
-    public boolean verifyOtp(String identifier, String enteredOtp) {
+    public String verifyOtp(String identifier, String enteredOtp) {
 
         User user = userRepository.findByEmailOrUsername(identifier, identifier)
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
@@ -65,7 +69,8 @@ public class UserService {
                 user.setActive(true);
                 user.setOtp(null);
                 userRepository.save(user);
-                return true;
+                String token = jwtUtil.generateToken(user.getUsername());
+                return "Account verified successfully. Your JWT token: " + token;
             } else {
                 throw new InvalidOtpException("Invalid or expired OTP.");
             }
@@ -93,7 +98,7 @@ public class UserService {
             throw new UserNotActivatedException("User has not verified their account. ");
         }
 
-        return "Login successful! Welcome, " + user.getFullname();
+        return jwtUtil.generateToken(user.getUsername());
 
     }
 
