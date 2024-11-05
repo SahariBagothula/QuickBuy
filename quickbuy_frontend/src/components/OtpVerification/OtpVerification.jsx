@@ -1,42 +1,21 @@
-import React, { useState } from "react";
-import axios from 'axios';
-import Swal from 'sweetalert2';
+import React, { useContext } from "react";
 
+import { RegistrationContext } from "../../index";
 import "./OtpVerification.css";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 
 const OtpVerification = () => {
 
-    const [identifier, setIdentifier] = useState("");
-    const [otp, setOtp] = useState("");
+    const { state, dispatch, verifyUser } = useContext(RegistrationContext);
 
-    const saveDetails = async (event) => {
+    const handleInputChange = (field, value) => {
+        dispatch({ type: "SET_FIELD_VALUE", field, value });
+    }
+
+    const handleSubmit = (event) => {
         event.preventDefault();
-        try {
-            await axios.post("http://localhost:8080/user/verifyOtp", {
-                identifier: identifier,
-                otp: otp
-            });
-            Swal.fire({
-                icon: 'success',
-                title: 'Verification successful!',
-                text: 'Registration successful, you can now shop.',
-                customClass: {
-                    popup: 'swal-popup' // Custom class for additional styling
-                }
-            });
-        } catch (error) {
-            console.log(`Error response: ${error.response}`);
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: error.response?.data || "An error occurred. Please try again.",
-                customClass: {
-                    popup: 'swal-popup' // Custom class for additional styling
-                }
-            });
-        }
+        verifyUser();
     }
 
     return (
@@ -49,13 +28,13 @@ const OtpVerification = () => {
                     <form className="otp-verification__form poppins-semibold">
                         <div className="otp-verification__form-group">
                             <label className="otp-verification__label" htmlFor="username">Username</label>
-                            <input className="otp-verification__input" type="text" id="username" required value={identifier} onChange={(e) => setIdentifier(e.target.value)} />
+                            <input className="otp-verification__input" type="text" id="username" required value={state.identifier} onChange={(e) => handleInputChange("identifier", e.target.value)} />
                         </div>
                         <div className="otp-verification__form-group">
                             <label className="otp-verification__label" htmlFor="otp">OTP</label>
-                            <input className="otp-verification__input" type="text" id="otp" required value={otp} onChange={(e) => setOtp(e.target.value)} />
+                            <input className="otp-verification__input" type="text" id="otp" required value={state.otp} onChange={(e) => handleInputChange("otp", e.target.value)} />
                         </div>
-                        <button className="otp-verification__button poppins-semibold" type="submit" onClick={saveDetails}>Verify</button>
+                        <button className="otp-verification__button poppins-semibold" type="submit" onClick={handleSubmit}>Verify</button>
                     </form>
                 </div>
             </div>
