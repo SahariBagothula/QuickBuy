@@ -3,9 +3,11 @@ package com.ecommerce.quickbuy.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.ecommerce.quickbuy.model.Payment;
+import com.ecommerce.quickbuy.model.Cart;
 
 @Repository
-public interface PaymentRepository extends JpaRepository<Payment, Integer> {
+public interface CartRepository extends JpaRepository<Cart, Integer> {
+
+    Cart findByUserId(int userId);
 
 }

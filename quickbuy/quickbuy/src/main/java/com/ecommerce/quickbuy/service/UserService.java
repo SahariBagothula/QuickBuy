@@ -70,7 +70,7 @@ public class UserService {
                 user.setOtp(null);
                 userRepository.save(user);
                 String token = jwtUtil.generateToken(user.getUsername());
-                return "Account verified successfully. Your JWT token: " + token;
+                return token;
             } else {
                 throw new InvalidOtpException("Invalid or expired OTP.");
             }

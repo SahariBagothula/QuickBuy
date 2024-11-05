@@ -28,7 +28,7 @@ public class SecurityConfig {
                         .requestMatchers("/user/**", "/user/register", "/user/verifyOtp", "/user/login",
                                 "/user/findById",
                                 "/products/add", "/products/findAll", "/products/update", "/products/delete",
-                                "/cart/add", "/cart/findAll", "/cart/remove", "/wishlist/add", "/wishlist/findAll",
+                                "/cart/**", "/cart/findAll", "/cart/remove", "/wishlist/**", "/wishlist/findAll",
                                 "/wishlist/remove", "/wishlist/addToCart", "/order/place", "/order/findAll",
                                 "/order/pay",
                                 "/address/findAll", "/address/findAllAddresses", "/address/add", "/address/remove",

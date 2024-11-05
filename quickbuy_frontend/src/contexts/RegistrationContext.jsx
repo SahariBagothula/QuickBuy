@@ -77,10 +77,12 @@ export const RegistartionProvider = ({ children }) => {
 
     const verifyUser = async () => {
         try {
-            await axios.post("http://localhost:8080/user/verifyOtp", {
+            const response = await axios.post("http://localhost:8080/user/verifyOtp", {
                 identifier: state.identifier,
                 otp: state.otp,
-            })
+            });
+            const token = response.data;
+            localStorage.setItem("token", token);
             Swal.fire({
                 icon: 'success',
                 title: 'Verification successful!',
@@ -108,10 +110,12 @@ export const RegistartionProvider = ({ children }) => {
 
     const loginUser = async () => {
         try {
-            await axios.post("http://localhost:8080/user/login", {
+            const response = await axios.post("http://localhost:8080/user/login", {
                 identifier: state.identifier,
                 password: state.password
             });
+            const token = response.data;
+            localStorage.setItem("token", token);
             Swal.fire({
                 icon: 'success',
                 title: 'Login successful!',

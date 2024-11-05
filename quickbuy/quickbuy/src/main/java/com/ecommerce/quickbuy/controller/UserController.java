@@ -38,7 +38,7 @@ public class UserController {
     @PostMapping("/verifyOtp")
     public ResponseEntity<String> verifyOtp(@Valid @RequestBody OtpVerificationDto otpVerificationDto) {
         String token = userService.verifyOtp(otpVerificationDto.getIdentifier(), otpVerificationDto.getOtp());
-        return ResponseEntity.ok("Verified successfully, JWT token: " + token);
+        return ResponseEntity.ok(token);
     }
 
     @GetMapping("/findById/{id}")
@@ -49,7 +49,7 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<String> loginUser(@Valid @RequestBody LoginDto loginDto) {
         String token = userService.loginUser(loginDto);
-        return ResponseEntity.ok("You are logged into Quickbuy now. JWT token: " + token);
+        return ResponseEntity.ok(token);
     }
 
 }
