@@ -21,7 +21,7 @@ import About from './components/About/About.jsx';
 import Contact from './components/Contact/Contact.jsx';
 import ProductListingPage from './components/ProductListing/ProductListingPage.jsx';
 import ProductDetails from './components/ProductDetails/ProductDetails.jsx';
-import Wishlist from './components/Wishlist/Wihslist.jsx';
+import Wishlist from './components/Wishlist/Wishlist.jsx';
 import Cart from './components/Cart/Cart.jsx';
 import Checkout from './components/Checkout/Checkout.jsx';
 import SignUp from './components/Signup/Signup.jsx';

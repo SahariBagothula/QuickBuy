@@ -15,7 +15,7 @@ const ProductDetails = () => {
     const { productId } = useParams();
 
     const product = productsState?.data?.find(({ id }) => Number(productId) === Number(id));
-    console.log(product);
+    // console.log(product);
 
     const handleAddToCart = (productId) => {
         dispatch({ type: "ADD_TO_CART", payload: productId });

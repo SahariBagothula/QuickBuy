@@ -9,7 +9,7 @@ export const RegistartionProvider = ({ children }) => {
 
     const navigate = useNavigate();
     const location = useLocation();
-    console.log(location)
+    // console.log(location)
 
     const initialState = {
         fullname: "",

@@ -4,7 +4,6 @@
 
 .checkout__heading{
     font-size: 1rem;
-    font-weight: 100;
     color: #1D1D1D;
     text-transform: uppercase;
     margin: 2rem 0;
@@ -82,7 +81,7 @@
 
 .address__label{
     color: #555555;
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     height: 2rem;
     margin-bottom: 0.25rem;
 }

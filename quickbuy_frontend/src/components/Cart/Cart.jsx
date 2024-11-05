@@ -8,7 +8,8 @@ import Footer from "../Footer/Footer";
 
 const Cart = () => {
 
-    const { state, dispatch } = useContext(ProductsContext);
+    const { state } = useContext(ProductsContext);
+    console.log(state?.productsInCart);
 
     const CartTotal = state.productsInCart.reduce((acc, product) => acc + product.price, 0);
     const discount = CartTotal * 0.1;
@@ -17,8 +18,8 @@ const Cart = () => {
         <>
             <Header />
             <main className="cart">
-                <h1 className="cart__heading">Shopping Cart</h1>
-                <div className="cart__content-heading">
+                <h1 className="cart__heading poppins-bold">Shopping Cart</h1>
+                <div className="cart__content-heading poppins-regular">
                     <p className="cart__content-details">Image</p>
                     <p className="cart__content-details">Product</p>
                     <p className="cart__content-details">Price</p>
@@ -27,10 +28,10 @@ const Cart = () => {
                     <p className="cart__content-details">Total</p>
                 </div>
                 <div className="cart__divider"></div>
-                <div className="cart__products">
+                <div className="cart__products poppins-regular">
                     {state?.productsInCart?.map(({ id, name, price, brand, imageUrl }) => (
-                        <>
-                            <article className="cart__product" key={id}>
+                        <div key={id}>
+                            <article className="cart__product">
                                 <div className="cart__product-image">
                                     <img
                                         src={`http://localhost:8080${imageUrl}`}
@@ -57,11 +58,11 @@ const Cart = () => {
 
                             </article>
                             <div className="cart__divider"></div>
-                        </>
+                        </div>
                     ))}
                 </div>
-                <aside className="cart__summary">
-                    <h2 className="cart__summary-heading">Cart Totals</h2>
+                <aside className="cart__summary poppins-regular">
+                    <h2 className="cart__summary-heading poppins-medium">Cart Totals</h2>
                     <p className="cart__summary-item">Subtotal <span className="cart__summary-item-price">{`$${CartTotal}`}</span></p>
                     <div className="cart__divider"></div>
                     <p className="cart__summary-item">Discount <span className="cart__summary-item-price">{`$${discount}`}</span></p>
@@ -69,7 +70,7 @@ const Cart = () => {
                     <p className="cart__summary-item">Shipping Fees <span className="cart__summary-item-price">FREE!!!</span></p>
                     <div className="cart__divider"></div>
                     <p className="cart__summary-item, cart__total">Cart Value <span className="cart__summary-item-price">{`$${CartTotal - discount}`}</span></p>
-                    <button className="cart__summary-button"><Link to="/checkout" className="cart__summary-button-link">Proceed to checkout</Link></button>
+                    <button className="cart__summary-button poppins-semibold"><Link to="/checkout" className="cart__summary-button-link">Proceed to checkout</Link></button>
                 </aside>
             </main>
             <Footer />
