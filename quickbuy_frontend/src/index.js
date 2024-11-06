@@ -10,13 +10,14 @@ import { InfoDataContext, InfoDataProvider } from './contexts/InfoDataContext';
 import { AddressContext, AddressProvider } from './contexts/AddressContext';
 import { AuthContext, AuthProvider } from './contexts/AuthContext';
 import { RegistrationContext, RegistartionProvider } from './contexts/RegistrationContext';
+import { ProfileContext, ProfileProvider } from './contexts/ProfileContext';
 
 import './ToastStyles.css';
 import 'react-toastify/dist/ReactToastify.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-export { ProductsContext, ImagesContext, TestimonialsContext, InfoDataContext, AddressContext, AuthContext, RegistrationContext };
+export { ProductsContext, ImagesContext, TestimonialsContext, InfoDataContext, AddressContext, AuthContext, RegistrationContext, ProfileContext };
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -29,16 +30,18 @@ root.render(
               <AddressProvider>
                 <AuthProvider>
                   <RegistartionProvider>
-                    <App />
-                    <ToastContainer
-                      position="bottom-right"
-                      autoClose={3000} // Auto close after 3 seconds
-                      hideProgressBar={false}
-                      closeOnClick
-                      pauseOnHover
-                      draggable
-                      pauseOnFocusLoss
-                    />
+                    <ProfileProvider>
+                      <App />
+                      <ToastContainer
+                        position="bottom-right"
+                        autoClose={3000} // Auto close after 3 seconds
+                        hideProgressBar={false}
+                        closeOnClick
+                        pauseOnHover
+                        draggable
+                        pauseOnFocusLoss
+                      />
+                    </ProfileProvider>
                   </RegistartionProvider>
                 </AuthProvider>
               </AddressProvider>

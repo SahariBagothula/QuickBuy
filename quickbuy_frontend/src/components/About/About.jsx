@@ -57,6 +57,7 @@ const About = () => {
                             return (
                                 <div className="about__testimonial" key={id}>
                                     <img src={`http://localhost:8080${imageUrl}`} alt="Testimonial" className="about__testimonial-image" />
+                                    {console.log(`http://localhost:8080${imageUrl}`)}
                                     <div className="about__testimonial-content">
                                         <p className="about__testimonial-message">
                                             {message}

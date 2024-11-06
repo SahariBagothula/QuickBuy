@@ -28,6 +28,7 @@ import SignUp from './components/Signup/Signup.jsx';
 import Login from './components/Login/Login.jsx';
 import OtpVerification from './components/OtpVerification/OtpVerification.jsx';
 import { RequiresAuthentication } from './RequiresAuthentication.jsx';
+import Profile from './components/Profile/Profile.jsx';
 
 
 function App() {
@@ -61,6 +62,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/verify" element={<OtpVerification />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </>
   );

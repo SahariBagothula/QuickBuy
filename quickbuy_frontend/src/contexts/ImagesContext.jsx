@@ -1,5 +1,5 @@
 import { createContext, useReducer, useEffect } from 'react';
-import api from '../api/axios';
+import axios from 'axios';
 
 export const ImagesContext = createContext();
 
@@ -26,7 +26,7 @@ export const ImagesProvider = ({ children }) => {
     useEffect(() => {
         dispatch({ type: "FETCH_IMAGES_REQUEST" });
 
-        api.get("image/findAll")
+        axios.get("http://localhost:8080/image/findAll")
             .then(response => {
                 dispatch({ type: "FETCH_IMAGES_SUCCESS", payload: response.data });
                 // console.log(response.data);

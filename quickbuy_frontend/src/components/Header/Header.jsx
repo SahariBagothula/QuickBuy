@@ -39,7 +39,7 @@ const Header = () => {
                 <ul className="header__nav header__nav--secondary">
                     <li className="header__nav-item"><NavLink to="/wishlist" className="header__nav-link"><img src={imageUrl1} alt='icon' /></NavLink></li>
                     <li className="header__nav-item"><NavLink to="/cart" className="header__nav-link"><img src={imageUrl2} alt='icon' /></NavLink></li>
-                    <li className="header__nav-item"><NavLink to="/login" className="header__nav-link"><img src={imageUrl3} alt='icon' /></NavLink></li>
+                    <li className="header__nav-item"><NavLink to="/profile" className="header__nav-link"><img src={imageUrl3} alt='icon' /></NavLink></li>
                 </ul>
             </header>
         </>

@@ -1,5 +1,5 @@
 import { createContext, useReducer } from 'react';
-import axios from 'axios';
+import axiosInstance from '../api/axios';
 import Swal from 'sweetalert2';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -37,7 +37,7 @@ export const RegistartionProvider = ({ children }) => {
 
     const registerUser = async () => {
         try {
-            await axios.post("http://localhost:8080/user/register", {
+            await axiosInstance.post("user/register", {
                 fullname: state.fullname,
                 username: state.username,
                 email: state.email,
@@ -77,7 +77,7 @@ export const RegistartionProvider = ({ children }) => {
 
     const verifyUser = async () => {
         try {
-            const response = await axios.post("http://localhost:8080/user/verifyOtp", {
+            const response = await axiosInstance.post("user/verifyOtp", {
                 identifier: state.identifier,
                 otp: state.otp,
             });
@@ -110,7 +110,7 @@ export const RegistartionProvider = ({ children }) => {
 
     const loginUser = async () => {
         try {
-            const response = await axios.post("http://localhost:8080/user/login", {
+            const response = await axiosInstance.post("user/login", {
                 identifier: state.identifier,
                 password: state.password
             });
