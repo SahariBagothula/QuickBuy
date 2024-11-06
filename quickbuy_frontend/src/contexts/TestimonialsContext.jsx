@@ -1,4 +1,4 @@
-import { createContext, useReducer, useEffect } from 'react';
+import React, { createContext, useReducer, useEffect } from 'react';
 import axios from 'axios';
 
 export const TestimonialsContext = createContext();
@@ -25,7 +25,7 @@ export const TestimonialsProvider = ({ children }) => {
     useEffect(() => {
         dispatch({ type: "FETCH_PRODUCTS_REQUEST" });
 
-        axios.get('testimonial/findAll')
+        axios.get('http://localhost:8080/testimonial/findAll')
             .then(response => {
                 dispatch({ type: "FETCH_PRODUCTS_SUCCESS", payload: response.data });
                 // console.log(response.data)

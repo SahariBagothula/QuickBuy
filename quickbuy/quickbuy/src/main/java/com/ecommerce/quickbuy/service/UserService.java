@@ -69,7 +69,7 @@ public class UserService {
                 user.setActive(true);
                 user.setOtp(null);
                 userRepository.save(user);
-                String token = jwtUtil.generateToken(user.getUsername());
+                String token = jwtUtil.generateToken(user.getUsername(), user.getId());
                 return token;
             } else {
                 throw new InvalidOtpException("Invalid or expired OTP.");
@@ -98,7 +98,7 @@ public class UserService {
             throw new UserNotActivatedException("User has not verified their account. ");
         }
 
-        return jwtUtil.generateToken(user.getUsername());
+        return jwtUtil.generateToken(user.getUsername(), user.getId());
 
     }
 

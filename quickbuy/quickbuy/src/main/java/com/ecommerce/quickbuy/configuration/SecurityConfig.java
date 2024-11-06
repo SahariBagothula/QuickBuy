@@ -26,7 +26,6 @@ public class SecurityConfig {
                 .csrf().disable() // Disable CSRF protection for testing (not recommended for production)
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/user/**", "/user/register", "/user/verifyOtp", "/user/login",
-                                "/user/findById",
                                 "/products/add", "/products/findAll", "/products/update", "/products/delete",
                                 "/cart/**", "/cart/findAll", "/cart/remove", "/wishlist/**", "/wishlist/findAll",
                                 "/wishlist/remove", "/wishlist/addToCart", "/order/place", "/order/findAll",
@@ -37,6 +36,7 @@ public class SecurityConfig {
                                 "/image/update", "/image/findAll", "/images/**", "/**", "/data/add", "/data/update",
                                 "/data/delete", "/data/findAll")
                         .permitAll()
+                        .requestMatchers("/user/findById").authenticated()
                         .anyRequest().authenticated() // Require authentication for all other requests
                 )
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);

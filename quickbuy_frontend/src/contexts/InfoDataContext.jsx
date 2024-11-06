@@ -1,6 +1,6 @@
-import { createContext, useReducer, useEffect } from 'react';
+import React, { createContext, useReducer, useEffect } from 'react';
 
-import api from '../api/axios';
+import axios from 'axios';
 
 export const InfoDataContext = createContext();
 
@@ -25,7 +25,7 @@ export const InfoDataProvider = ({ children }) => {
 
     useEffect(() => {
         dispatch({ type: "FETCH_DATA_REQUEST" })
-        api.get("data/findAll")
+        axios.get("http://localhost:8080/data/findAll")
             .then(response => {
                 dispatch({ type: "FETCH_DATA_SUCCESS", payload: response.data });
             })

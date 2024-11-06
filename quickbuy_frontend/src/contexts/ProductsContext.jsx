@@ -1,11 +1,11 @@
-import { createContext, useReducer, useEffect } from 'react';
-import api from '../api/axios';
+import React, { createContext, useReducer, useEffect } from 'react';
+import axios from 'axios';
 
 export const ProductsContext = createContext();
 
 export const ProductsProvider = ({ children }) => {
 
-    const initialState = { data: [], productsData: [], enteredText: "", loading: false, error: null, selectedBrands: [], selectedCategories: [], productsInCart: [], productsInWishlist: [], productQuantity: 1 };
+    const initialState = { data: [], productsData: [], enteredText: "", loading: false, error: null, selectedBrands: [], selectedCategories: [], productQuantity: 1 };
 
     const reducer = (state, action) => {
         switch (action.type) {
@@ -50,14 +50,6 @@ export const ProductsProvider = ({ children }) => {
                 return {
                     ...state, selectedCategories: updatedCategories, data: filteredProducts
                 };
-            case "ADD_TO_CART":
-                return { ...state, productsInCart: [...state.productsInCart, state.productsData.find(({ id }) => id === action.payload)] }
-            case "ADD_TO_WISHLIST":
-                return { ...state, productsInWishlist: [...state.productsInWishlist, state.productsData.find(({ id }) => id === action.payload)] }
-            case "INCREMENT":
-                return { ...state, productQuantity: state.productQuantity + 1 }
-            case "DECREMENT":
-                return { ...state, productQuantity: state.productQuantity - 1 }
             default:
                 return state;
         }
@@ -70,7 +62,7 @@ export const ProductsProvider = ({ children }) => {
 
         dispatch({ type: "FETCH_PRODUCTS_REQUEST" });
 
-        api.get('products/findAll')
+        axios.get('http://localhost:8080/products/findAll')
             .then(response => {
                 dispatch({ type: "FETCH_PRODUCTS_SUCCESS", payload: response.data });
                 // console.log(response.data);

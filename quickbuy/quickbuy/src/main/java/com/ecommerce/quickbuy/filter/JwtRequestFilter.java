@@ -2,14 +2,12 @@ package com.ecommerce.quickbuy.filter;
 
 import java.io.IOException;
 
-import org.hibernate.validator.internal.util.stereotypes.Lazy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
-// import org.springframework.security.web.authentication.WebAuthenticationFilter;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.ecommerce.quickbuy.util.JwtUtil;
@@ -26,7 +24,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     private JwtUtil jwtUtil;
 
     @Autowired
-    // @Lazy
     private UserDetailsService userDetailsService;
 
     @Override
@@ -39,20 +36,31 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         String jwt = null;
 
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-            jwt = authorizationHeader.substring(7);
-            username = jwtUtil.extractUsername(jwt);
+            jwt = authorizationHeader.substring(7); // Extract token from "Bearer <token>"
+            username = jwtUtil.extractUsername(jwt); // Extract username from JWT
         }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             if (jwtUtil.validateToken(jwt, username)) {
+                Long userId = jwtUtil.extractUserId(jwt); // Extract userId from JWT
+
+                // Load user details using username (you can use the userId for more specific
+                // checks if needed)
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetails,
-                        null, userDetails.getAuthorities());
+
+                // You can set a custom authentication object with additional user details if
+                // necessary
+                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+                        userDetails, null, userDetails.getAuthorities());
+
+                // Optionally, you can add the userId to the authentication token if needed for
+                // downstream use
+                authToken.setDetails(userId); // Setting the userId as part of the authentication token
+
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
         }
 
-        chain.doFilter(request, response);
+        chain.doFilter(request, response); // Continue the filter chain
     }
-
 }

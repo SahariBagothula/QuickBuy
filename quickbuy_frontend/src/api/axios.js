@@ -11,8 +11,9 @@ axiosInstance.interceptors.request.use(
     (config) => {
         const token = localStorage.getItem('token');
         if (token) {
-            config.headers.Authorization = `Bearer ${token}`;
+            config.headers.Authorization = token;
         }
+        console.log('Request Config:', config);
         return config;
     },
     (error) => {
@@ -21,11 +22,13 @@ axiosInstance.interceptors.request.use(
 );
 
 axiosInstance.interceptors.response.use((response) => {
+    console.log('Response:', response);
     return response;
 },
     (error) => {
         if (error.response && error.response.status === 401) {
-            // Handle unauthorized access
+            alert("Session expired. Please log in again. ")
+            window.location.href = "/login";
         }
         return Promise.reject(error);
     }

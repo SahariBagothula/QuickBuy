@@ -1,5 +1,6 @@
-import { useReducer, createContext, useEffect } from 'react';
-import axios from 'axios';
+import React, { useReducer, createContext, useEffect } from 'react';
+import axiosInstance from '../api/axios';
+import { jwtDecode } from 'jwt-decode';
 
 export const ProfileContext = createContext();
 
@@ -23,14 +24,21 @@ export const ProfileProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     useEffect(() => {
+
+        const token = localStorage.getItem("token");
+
+        if (!token) return;
+
+        const { userId } = jwtDecode(token);
+
         dispatch({ type: "FETCH_PROFILE_DATA" });
 
-        axios.get("http://localhost:8080/user/findById/1")
+        axiosInstance.get(`user/findById/${userId}`)
             .then((response) => {
                 dispatch({ type: "FETCH_DATA_SUCCESS", payload: response.data });
             })
             .catch((error) => {
-                dispatch({ tye: "FETCH_DATA_FAIL", payload: error.message });
+                dispatch({ type: "FETCH_DATA_FAIL", payload: error.message });
             })
 
     }, []);

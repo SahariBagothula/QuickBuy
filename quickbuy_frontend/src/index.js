@@ -11,13 +11,14 @@ import { AddressContext, AddressProvider } from './contexts/AddressContext';
 import { AuthContext, AuthProvider } from './contexts/AuthContext';
 import { RegistrationContext, RegistartionProvider } from './contexts/RegistrationContext';
 import { ProfileContext, ProfileProvider } from './contexts/ProfileContext';
+import { CartContext, CartProvider } from './contexts/CartContext';
 
 import './ToastStyles.css';
 import 'react-toastify/dist/ReactToastify.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-export { ProductsContext, ImagesContext, TestimonialsContext, InfoDataContext, AddressContext, AuthContext, RegistrationContext, ProfileContext };
+export { ProductsContext, ImagesContext, TestimonialsContext, InfoDataContext, AddressContext, AuthContext, RegistrationContext, ProfileContext, CartContext };
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -31,16 +32,18 @@ root.render(
                 <AuthProvider>
                   <RegistartionProvider>
                     <ProfileProvider>
-                      <App />
-                      <ToastContainer
-                        position="bottom-right"
-                        autoClose={3000} // Auto close after 3 seconds
-                        hideProgressBar={false}
-                        closeOnClick
-                        pauseOnHover
-                        draggable
-                        pauseOnFocusLoss
-                      />
+                      <CartProvider>
+                        <App />
+                        <ToastContainer
+                          position="bottom-right"
+                          autoClose={3000} // Auto close after 3 seconds
+                          hideProgressBar={false}
+                          closeOnClick
+                          pauseOnHover
+                          draggable
+                          pauseOnFocusLoss
+                        />
+                      </CartProvider>
                     </ProfileProvider>
                   </RegistartionProvider>
                 </AuthProvider>

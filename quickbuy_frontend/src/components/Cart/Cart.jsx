@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
 import { Link } from 'react-router-dom';
 
-import { ProductsContext } from "../../index";
+import { CartContext } from "../../index";
 import "./Cart.css";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 
 const Cart = () => {
 
-    const { state } = useContext(ProductsContext);
+    const { state } = useContext(CartContext);
 
     const CartTotal = state.productsInCart.reduce((acc, product) => acc + product.price, 0);
     const discount = CartTotal * 0.1;
@@ -28,7 +28,7 @@ const Cart = () => {
                 </div>
                 <div className="cart__divider"></div>
                 <div className="cart__products poppins-regular">
-                    {state?.productsInCart?.map(({ id, name, price, brand, imageUrl }) => (
+                    {state?.cart?.map(({ id, name, price, brand, imageUrl }) => (
                         <div key={id}>
                             <article className="cart__product">
                                 <div className="cart__product-image">

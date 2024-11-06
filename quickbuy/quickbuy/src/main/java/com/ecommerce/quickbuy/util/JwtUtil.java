@@ -12,10 +12,11 @@ public class JwtUtil {
 
     private final String SECRET_KEY = "your-secret-key"; // Use a strong and secure key in a real application
 
-    // Generate the JWT token
-    public String generateToken(String username) {
+    // Generate the JWT token with userId and username
+    public String generateToken(String username, int userId) {
         return Jwts.builder()
-                .setSubject(username)
+                .setSubject(username) // You can keep the username as subject, or replace with something else
+                .claim("userId", userId) // Add the userId claim
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10)) // Token valid for 10 hours
                 .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
@@ -31,6 +32,11 @@ public class JwtUtil {
     // Extract username from the JWT token
     public String extractUsername(String token) {
         return extractClaims(token).getSubject();
+    }
+
+    // Extract userId from the JWT token
+    public Long extractUserId(String token) {
+        return (Long) extractClaims(token).get("userId"); // Extract the userId claim
     }
 
     // Check if the token is expired
