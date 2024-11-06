@@ -10,7 +10,7 @@ const Cart = () => {
 
     const { state } = useContext(CartContext);
 
-    const CartTotal = state.productsInCart.reduce((acc, product) => acc + product.price, 0);
+    const CartTotal = state.cart.reduce((acc, product) => acc + product.price, 0);
     const discount = CartTotal * 0.1;
 
     return (

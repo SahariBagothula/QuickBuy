@@ -53,20 +53,22 @@ const About = () => {
                 <div className="about__testimonials poppins-regular">
                     <h1 className="about__testimonials-heading">Testimonials</h1>
                     {
-                        testimonialsState?.data?.map(({ id, imageUrl, message, name }) => {
-                            return (
-                                <div className="about__testimonial" key={id}>
-                                    <img src={`http://localhost:8080${imageUrl}`} alt="Testimonial" className="about__testimonial-image" />
-                                    {console.log(`http://localhost:8080${imageUrl}`)}
-                                    <div className="about__testimonial-content">
-                                        <p className="about__testimonial-message">
-                                            {message}
-                                        </p>
-                                        <p className="about__testimonial-name">{name}</p>
+                        testimonialsState.loading ? <div className="loader"></div> : (
+                            testimonialsState?.data?.map(({ id, imageUrl, message, name }) => {
+                                return (
+                                    <div className="about__testimonial" key={id}>
+                                        <img src={`http://localhost:8080${imageUrl}`} alt="Testimonial" className="about__testimonial-image" />
+                                        {console.log(`http://localhost:8080${imageUrl}`)}
+                                        <div className="about__testimonial-content">
+                                            <p className="about__testimonial-message">
+                                                {message}
+                                            </p>
+                                            <p className="about__testimonial-name">{name}</p>
+                                        </div>
                                     </div>
-                                </div>
-                            )
-                        })
+                                )
+                            })
+                        )
                     }
                 </div>
             </section>

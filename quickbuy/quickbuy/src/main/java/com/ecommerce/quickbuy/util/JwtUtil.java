@@ -35,8 +35,8 @@ public class JwtUtil {
     }
 
     // Extract userId from the JWT token
-    public Long extractUserId(String token) {
-        return (Long) extractClaims(token).get("userId"); // Extract the userId claim
+    public int extractUserId(String token) {
+        return (int) extractClaims(token).get("userId"); // Extract the userId claim
     }
 
     // Check if the token is expired

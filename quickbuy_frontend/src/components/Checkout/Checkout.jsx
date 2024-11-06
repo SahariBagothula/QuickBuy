@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-import axios from 'axios';
+import React, { useContext } from "react";
 import Swal from 'sweetalert2';
 
 import { AddressContext } from '../../contexts/AddressContext';
@@ -8,34 +7,15 @@ import './Checkout.css';
 
 const Checkout = () => {
 
-    const { state } = useContext(AddressContext);
+    const { state, dispatch, addAddress } = useContext(AddressContext);
 
-    const [userId, setuserId] = useState("");
-    const [houseNumber, setHouseNumber] = useState("");
-    const [street, setStreet] = useState("");
-    const [city, setCity] = useState("");
-    const [stateName, setStateName] = useState("");
-    const [pincode, setPincode] = useState("");
-    const [country, setCountry] = useState("");
+    const handleInputChange = (field, value) => {
+        dispatch({ type: "SET_FIELD_VALUE", field, value })
+    }
 
-    const saveDetails = async (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
-        try {
-            await axios.post("http://localhost:8080/address/add", {
-                userId: userId,
-                houseNumber: houseNumber,
-                street: street,
-                city: city,
-                stateName: stateName,
-                pincode: pincode,
-                country: country,
-            });
-            alert("Address saved successfully");
-        } catch (error) {
-            console.error("Error response:", error.response);
-            alert(error.response?.data || "An error occurred. Please try again.");
-        }
-
+        addAddress();
     }
 
     const showModal = () => {
@@ -82,33 +62,30 @@ const Checkout = () => {
                 </section>
                 <section className="add__address poppins-regular">
                     <h1 className="add__address-heading poppins-semibold">Add address</h1>
-                    <label className="address__label">User id
-                        <span className="required">*</span>  </label>
-                    <input type="text" className="address__input" value={userId} onChange={(e) => setuserId(e.target.value)} />
                     <label className="address__label">HouseNumber
                         <span className="required">*</span>  </label>
-                    <input type="text" className="address__input" value={houseNumber} onChange={(e) => setHouseNumber(e.target.value)} />
+                    <input type="text" className="address__input" value={state.houseNumber} onChange={(e) => handleInputChange("houseNumber", e.target.value)} />
 
                     <label className="address__label">Street
                         <span className="required">*</span>  </label>
-                    <input type="text" className="address__input" value={street} onChange={(e) => setStreet(e.target.value)} />
+                    <input type="text" className="address__input" value={state.street} onChange={(e) => handleInputChange("street", e.target.value)} />
 
                     <label className="address__label">City
                         <span className="required">*</span> </label>
-                    <input type="text" className="address__input" value={city} onChange={(e) => setCity(e.target.value)} />
+                    <input type="text" className="address__input" value={state.city} onChange={(e) => handleInputChange("city", e.target.value)} />
 
                     <label className="address__label">Pincode
                         <span className="required">*</span></label>
-                    <input type="number" className="address__input" value={pincode} onChange={(e) => setPincode(e.target.value)} />
+                    <input type="number" className="address__input" value={state.pincode} onChange={(e) => handleInputChange("pincode", e.target.value)} />
 
                     <label className="address__label">State
                         <span className="required">*</span> </label>
-                    <input type="text" className="address__input" value={stateName} onChange={(e) => setStateName(e.target.value)} />
+                    <input type="text" className="address__input" value={state.stateName} onChange={(e) => handleInputChange("stateName", e.target.value)} />
 
                     <label className="address__label">Country
                         <span className="required">*</span> </label>
-                    <input type="text" className="address__input" value={country} onChange={(e) => setCountry(e.target.value)} />
-                    <button className="signup__button  poppins-semibold" type="submit" onClick={saveDetails}>Save address</button>
+                    <input type="text" className="address__input" value={state.country} onChange={(e) => handleInputChange("country", e.target.value)} />
+                    <button className="signup__button  poppins-semibold" type="submit" onClick={handleSubmit}>Save address</button>
 
                 </section>
                 <section className='placeorder poppins-regular'>

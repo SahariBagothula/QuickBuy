@@ -30,6 +30,7 @@ import Login from './components/Login/Login.jsx';
 import OtpVerification from './components/OtpVerification/OtpVerification.jsx';
 import { RequiresAuthentication } from './RequiresAuthentication.jsx';
 import Profile from './components/Profile/Profile.jsx';
+import NotFound from './components/NotFound/NotFound.jsx';
 
 
 function App() {
@@ -64,6 +65,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/verify" element={<OtpVerification />} />
         <Route path="/profile" element={<Profile />} />
+        {/* The below route will catch all routes that don't match any of the previously defined paths and will render the NotFound component. */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );

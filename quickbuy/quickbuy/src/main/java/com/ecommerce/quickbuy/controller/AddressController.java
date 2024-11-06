@@ -2,6 +2,7 @@ package com.ecommerce.quickbuy.controller;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -12,7 +13,6 @@ import com.ecommerce.quickbuy.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -24,8 +24,8 @@ public class AddressController {
     @Autowired
     private AddressService addressService;
 
-    @GetMapping("/findAll")
-    public ResponseEntity<List<AddressDto>> getUserAddresses(@RequestParam int userId) {
+    @GetMapping("/findAll/{userId}")
+    public ResponseEntity<List<AddressDto>> getUserAddresses(@PathVariable int userId) {
         List<AddressDto> addresses = addressService.getAddressesByUserId(userId);
         return ResponseEntity.ok(addresses);
     }
@@ -42,8 +42,8 @@ public class AddressController {
         return ResponseEntity.ok(savedAddress);
     }
 
-    @DeleteMapping("/remove")
-    public ResponseEntity<String> deleteAddress(@RequestParam int addressId) {
+    @DeleteMapping("/remove/{addressId}")
+    public ResponseEntity<String> deleteAddress(@PathVariable int addressId) {
         addressService.deleteAddress(addressId);
         return ResponseEntity.ok("Address deleted successfully");
     }

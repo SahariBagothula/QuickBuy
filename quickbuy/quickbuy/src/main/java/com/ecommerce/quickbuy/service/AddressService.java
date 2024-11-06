@@ -1,3 +1,4 @@
+
 package com.ecommerce.quickbuy.service;
 
 import java.util.List;
@@ -6,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ecommerce.quickbuy.configuration.SecurityUtils;
 import com.ecommerce.quickbuy.dto.AddressDto;
 import com.ecommerce.quickbuy.model.Address;
 import com.ecommerce.quickbuy.model.User;
@@ -21,6 +23,9 @@ public class AddressService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    SecurityUtils securityUtils;
+
     public AddressDto convertToAddressDto(Address address) {
         AddressDto dto = new AddressDto();
         dto.setId(address.getId());
@@ -30,9 +35,6 @@ public class AddressService {
         dto.setStateName(address.getStateName());
         dto.setPincode(address.getPincode());
         dto.setCountry(address.getCountry());
-
-        dto.setUserId(address.getUser().getId());
-        dto.setUserName(address.getUser().getUsername());
 
         return dto;
 
@@ -47,24 +49,25 @@ public class AddressService {
         address.setPincode(dto.getPincode());
         address.setCountry(dto.getCountry());
 
-        // You need to fetch the user entity using the userId in the DTO (assumed here)
-        User user = new User();
-        user.setId(dto.getUserId());
-        address.setUser(user);
-
         return address;
     }
 
     public AddressDto addAddress(AddressDto addressDto) {
 
-        User user = userRepository.findById(addressDto.getUserId())
-                .orElseThrow(() -> new IllegalArgumentException("User not found with id: " + addressDto.getUserId()));
+        // String token = jwtUtil.generateToken(user.getUsername(), user.getId());
+
+        int userId = securityUtils.getCurrentUserId();
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("User not found with id: " + userId));
 
         Address address = convertToAddressEntity(addressDto);
         address.setUser(user);
 
         Address savedAddress = addressRepository.save(address);
+
         return convertToAddressDto(savedAddress);
+
     }
 
     public void deleteAddress(int addressId) {
