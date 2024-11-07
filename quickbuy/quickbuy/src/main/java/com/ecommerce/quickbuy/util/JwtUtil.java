@@ -4,21 +4,30 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import java.util.Date;
-
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.stereotype.Component;
 
 @Component
 public class JwtUtil {
 
-    private final String SECRET_KEY = "your-secret-key"; // Use a strong and secure key in a real application
+    private final String SECRET_KEY = "your-secret-key"; // Replace with a secure key in production
 
-    // Generate the JWT token with userId and username
+    // Generate the JWT token with additional claims
     public String generateToken(String username, int userId) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("userId", userId);
+
+        return createToken(claims, username);
+    }
+
+    // Create token with claims and subject
+    private String createToken(Map<String, Object> claims, String subject) {
         return Jwts.builder()
-                .setSubject(username) // You can keep the username as subject, or replace with something else
-                .claim("userId", userId) // Add the userId claim
-                .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10)) // Token valid for 10 hours
+                .setClaims(claims)
+                .setSubject(subject)
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10)) // Valid for 10 hours
                 .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
                 .compact();
     }
@@ -36,7 +45,7 @@ public class JwtUtil {
 
     // Extract userId from the JWT token
     public int extractUserId(String token) {
-        return (int) extractClaims(token).get("userId"); // Extract the userId claim
+        return (int) extractClaims(token).get("userId");
     }
 
     // Check if the token is expired
@@ -46,6 +55,9 @@ public class JwtUtil {
 
     // Extract all claims from the JWT token
     private Claims extractClaims(String token) {
-        return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
+        return Jwts.parser()
+                .setSigningKey(SECRET_KEY)
+                .parseClaimsJws(token)
+                .getBody();
     }
 }

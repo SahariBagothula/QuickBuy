@@ -6,7 +6,7 @@ export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
 
-    const initialState = { cart: [], loading: false, error: null };
+    const initialState = { cart: [], loading: false, error: null, cartItemsId: [] };
 
     const reducer = (state, action) => {
         switch (action.type) {
@@ -17,7 +17,14 @@ export const CartProvider = ({ children }) => {
             case "FETCH_DATA_FAIL":
                 return { ...state, error: action.payload, loading: false };
             case "ADD_TO_CART":
-                return { ...state, cart: [...state.cart, action.payload] };
+                const existingProduct = state.cart.find(item => item.id === action.payload.id);
+                if (existingProduct) {
+                    return {
+                        ...state
+                    };
+                } else {
+                    return { ...state, cart: [...state.cart, action.payload], cartItemsId: [...state.cartItemsId, action.payload.id] };
+                }
             default:
                 return state;
         }
@@ -36,6 +43,7 @@ export const CartProvider = ({ children }) => {
         axiosInstance.get(`cart/${userId}`)
             .then(response => {
                 dispatch({ type: "FETCH_DATA_SUCCESS", payload: response.data });
+                console.log(response.data);
             })
             .catch(error => {
                 dispatch({ type: "FETCH_DATA_FAIL", payload: error.message });
@@ -44,23 +52,18 @@ export const CartProvider = ({ children }) => {
     }, [])
 
 
-    const addToCart = async (productId) => {
-
-        const token = localStorage.getItem("token");
-        if (!token) return;
-        const { userId } = jwtDecode(token);
-
-        axiosInstance.post(`/user/${userId}/products/${productId}`)
-            .then((response) => {
-                dispatch({ type: "ADD_TO_CART", payload: response.data })
-            })
-            .catch(error => {
-                dispatch({ type: "FETCH_DATA_FAIL", payload: error.message });
-            })
-    }
+    // const addToCart = (productId) => {
+    //     axiosInstance.post(`/user/products/${productId}`)
+    //         .then((response) => {
+    //             dispatch({ type: "ADD_TO_CART", payload: response.data })
+    //         })
+    //         .catch(error => {
+    //             dispatch({ type: "FETCH_DATA_FAIL", payload: error.message });
+    //         })
+    // }
 
     return (
-        <CartContext.Provider value={{ state, addToCart }}>
+        <CartContext.Provider value={{ state, dispatch }}>
             {children}
         </CartContext.Provider>
     )

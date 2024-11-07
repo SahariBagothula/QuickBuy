@@ -33,7 +33,7 @@ public class AddressService {
         if (attributes != null) {
             return attributes.getRequest();
         } else {
-            throw new IllegalStateException("Request attributes re not availbale");
+            throw new IllegalStateException("Request attributes are not availbale");
         }
     }
 

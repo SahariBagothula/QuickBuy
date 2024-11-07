@@ -27,7 +27,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/user/**", "/user/register", "/user/verifyOtp", "/user/login",
                                 "/products/add", "/products/findAll", "/products/update", "/products/delete",
-                                "/cart/**", "/cart/findAll", "/cart/remove", "/wishlist/**", "/wishlist/findAll",
+                                "/cart/**", "/cart/products/**", "/cart/findAll", "/cart/remove", "/wishlist/**",
+                                "/wishlist/findAll",
                                 "/wishlist/remove", "/wishlist/addToCart", "/order/place", "/order/findAll",
                                 "/order/pay",
                                 "/address/findAll", "/address/findAllAddresses", "/address/add", "/address/remove",

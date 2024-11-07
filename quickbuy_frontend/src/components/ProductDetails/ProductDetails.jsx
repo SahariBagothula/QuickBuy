@@ -6,19 +6,32 @@ import { ProductsContext, CartContext } from '../../index';
 import './ProductDetails.css';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import axiosInstance from '../../api/axios';
 
 const ProductDetails = () => {
 
-    const { state: productsState, dispatch: productsDispatch } = useContext(ProductsContext);
-
-    const { state: cartState, dispatch: cartDispatch, addToCart } = useContext(CartContext);
-
-
+    const { state: productsState } = useContext(ProductsContext);
+    const { state: cartState, dispatch } = useContext(CartContext);
     const { productId } = useParams();
 
     const product = productsState?.data?.find(({ id }) => Number(productId) === Number(id));
-    // console.log(product);
+    console.log(product);
 
+    const handleCart = async () => {
+
+        if (cartState.cartItemsId.includes(product.id)) {
+            toast("Product is in cart");
+        }
+
+        try {
+            await axiosInstance.post(`/cart/products/${Number(productId)}`);
+            dispatch({ type: "ADD_TO_CART", payload: product });
+            toast("Added to cart");
+        } catch (error) {
+            console.error("Error adding product to cart:", error.response || error.message);
+            toast.error("Failed to add product to cart");
+        }
+    }
 
 
     return (
@@ -42,7 +55,7 @@ const ProductDetails = () => {
                                 <option value="xl">XL</option>
                             </select>
                         </div>
-                        <button className="product-listing__add-to-cart poppins-semibold" onClick={() => addToCart(product.id)}>Add to Cart</button>
+                        <button className="product-listing__add-to-cart poppins-semibold" onClick={() => handleCart()}>{cartState.cartItemsId.includes(product.id) ? <p>Added to Cart</p> : <p>Add to Cart</p>}</button>
                         {/* <button className="product-listing__add-to-cart poppins-semibold" onClick={() => handleAddToWishlist(product.id)}>Add to Wishlist</button> */}
                     </div>
                 </div>

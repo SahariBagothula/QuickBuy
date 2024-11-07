@@ -18,20 +18,20 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
-    @GetMapping("/{userId}")
-    public Cart getCartByUserId(@PathVariable int userId) {
-        return cartService.getCartByUserId(userId);
+    @GetMapping("/findById")
+    public Cart getCartByUserId() {
+        return cartService.getCartByUserId();
     }
 
-    @PostMapping("/{userId}/products/{productId}")
-    public String addProductToCart(@PathVariable int userId, @PathVariable int productId) {
-        cartService.addProductToCart(userId, productId);
+    @PostMapping("/products/{productId}")
+    public String addProductToCart(@PathVariable int productId) {
+        cartService.addProductToCart(productId);
         return "Product added to cart";
     }
 
-    @DeleteMapping("/{userId}/products/{productId}")
-    public String removeProductFromCart(@PathVariable int userId, @PathVariable int productId) {
-        cartService.removeProductFromCart(userId, productId);
+    @DeleteMapping("/products/{productId}")
+    public String removeProductFromCart(@PathVariable int productId) {
+        cartService.removeProductFromCart(productId);
         return "Product removed from cart";
     }
 
