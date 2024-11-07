@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ImagesContext } from '../../index';
 import './NotFound.css';
 import Header from "../Header/Header";
@@ -7,13 +7,13 @@ import Footer from "../Footer/Footer";
 
 const NotFound = () => {
     const { state: imagesState } = React.useContext(ImagesContext);
-    const history = useHistory();
+    const naviagte = useNavigate();
 
     const heroImage = imagesState?.images?.find(({ imageHeading }) => imageHeading === 'not-found');
     const imageUrl = heroImage ? `http://localhost:8080${heroImage.imageUrl}` : '/';
 
     const handleGoHome = () => {
-        history.push('/');
+        naviagte.push('/');
     };
 
     return (

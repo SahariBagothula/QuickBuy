@@ -1,9 +1,13 @@
 package com.ecommerce.quickbuy.model;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,6 +26,9 @@ public class User {
     private String mobileNumber;
     private boolean isActive;
     private String otp;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Address> addresesses;
 
     public int getId() {
         return id;
@@ -101,6 +108,14 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public List<Address> getAddresesses() {
+        return addresesses;
+    }
+
+    public void setAddresesses(List<Address> addresesses) {
+        this.addresesses = addresesses;
     }
 
 }

@@ -1,18 +1,20 @@
-
 package com.ecommerce.quickbuy.service;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.ecommerce.quickbuy.configuration.SecurityUtils;
 import com.ecommerce.quickbuy.dto.AddressDto;
 import com.ecommerce.quickbuy.model.Address;
 import com.ecommerce.quickbuy.model.User;
 import com.ecommerce.quickbuy.repository.AddressRepository;
 import com.ecommerce.quickbuy.repository.UserRepository;
+import com.ecommerce.quickbuy.util.JwtUtil;
+
+import jakarta.servlet.http.HttpServletRequest;
+
+import java.util.List;
 
 @Service
 public class AddressService {
@@ -21,75 +23,67 @@ public class AddressService {
     private AddressRepository addressRepository;
 
     @Autowired
-    private UserRepository userRepository;
+    private UserRepository userRepository; // Assuming you have a UserRepository
 
     @Autowired
-    SecurityUtils securityUtils;
+    private JwtUtil jwtUtil;
 
-    public AddressDto convertToAddressDto(Address address) {
-        AddressDto dto = new AddressDto();
-        dto.setId(address.getId());
-        dto.setHouseNumber(address.getHouseNumber());
-        dto.setStreet(address.getStreet());
-        dto.setCity(address.getCity());
-        dto.setStateName(address.getStateName());
-        dto.setPincode(address.getPincode());
-        dto.setCountry(address.getCountry());
-
-        return dto;
-
+    private HttpServletRequest getCurrentHttpRequest() {
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        if (attributes != null) {
+            return attributes.getRequest();
+        } else {
+            throw new IllegalStateException("Request attributes re not availbale");
+        }
     }
 
-    public Address convertToAddressEntity(AddressDto dto) {
+    private String extractTokenFromRequest(HttpServletRequest request) {
+        String bearerToken = request.getHeader("Authorization");
+        if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
+            return bearerToken.substring(7);
+        } else {
+            throw new RuntimeException("JWT Token is missing or invalid");
+        }
+    }
+
+    public Address addAddress(AddressDto addressDTO) {
+        // Get the JWT token from the request header
+        HttpServletRequest request = getCurrentHttpRequest();
+        String token = extractTokenFromRequest(request);
+
+        // Extract the userId from the token
+        int userId = jwtUtil.extractUserId(token);
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+
+        // Map DTO to Address entity
         Address address = new Address();
-        address.setHouseNumber(dto.getHouseNumber());
-        address.setStreet(dto.getStreet());
-        address.setCity(dto.getCity());
-        address.setStateName(dto.getStateName());
-        address.setPincode(dto.getPincode());
-        address.setCountry(dto.getCountry());
-
-        return address;
-    }
-
-    public AddressDto addAddress(AddressDto addressDto) {
-
-        // String token = jwtUtil.generateToken(user.getUsername(), user.getId());
-
-        int userId = securityUtils.getCurrentUserId();
-
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new IllegalArgumentException("User not found with id: " + userId));
-
-        Address address = convertToAddressEntity(addressDto);
+        address.setHouseNumber(addressDTO.getHouseNumber());
+        address.setStreet(addressDTO.getStreet());
+        address.setCity(addressDTO.getCity());
+        address.setStateName(addressDTO.getStateName());
+        address.setPincode(addressDTO.getPincode());
+        address.setCountry(addressDTO.getCountry());
         address.setUser(user);
 
-        Address savedAddress = addressRepository.save(address);
-
-        return convertToAddressDto(savedAddress);
-
+        return addressRepository.save(address);
     }
 
-    public void deleteAddress(int addressId) {
-        addressRepository.deleteById(addressId);
+    public List<Address> getAddressesByUserID(int userId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        return addressRepository.findByUserId(user.getId());
     }
 
-    public List<AddressDto> getAddressesByUserId(int userId) {
-        List<Address> addresses = addressRepository.findByUserId(userId);
-        return addresses.stream()
-                .map(this::convertToAddressDto)
-                .collect(Collectors.toList());
-    }
+    public List<Address> getUserAddresses() {
+        // Get the JWT token from the request header
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
+                .getRequest();
+        String token = extractTokenFromRequest(request);
 
-    public AddressDto getAddressById(int addressId) {
-        Address address = addressRepository.findById(addressId)
-                .orElseThrow(() -> new IllegalArgumentException("Address not found with id: " + addressId));
-        return convertToAddressDto(address);
-    }
+        // Extract the userId from the token
+        int userId = jwtUtil.extractUserId(token);
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
 
-    public List<Address> findAllAddresses() {
-        List<Address> addresses = addressRepository.findAll();
-        return addresses;
+        return addressRepository.findByUserId(user.getId());
     }
 
 }

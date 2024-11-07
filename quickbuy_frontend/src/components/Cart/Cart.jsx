@@ -10,8 +10,8 @@ const Cart = () => {
 
     const { state } = useContext(CartContext);
 
-    const CartTotal = state.cart.reduce((acc, product) => acc + product.price, 0);
-    const discount = CartTotal * 0.1;
+    // const CartTotal = state.cart.reduce((acc, product) => acc + product.price, 0);
+    // const discount = CartTotal * 0.1;
 
     return (
         <>
@@ -62,13 +62,13 @@ const Cart = () => {
                 </div>
                 <aside className="cart__summary poppins-regular">
                     <h2 className="cart__summary-heading poppins-medium">Cart Totals</h2>
-                    <p className="cart__summary-item">Subtotal <span className="cart__summary-item-price">{`$${CartTotal}`}</span></p>
+                    {/* <p className="cart__summary-item">Subtotal <span className="cart__summary-item-price">{`$${CartTotal}`}</span></p> */}
                     <div className="cart__divider"></div>
-                    <p className="cart__summary-item">Discount <span className="cart__summary-item-price">{`$${discount}`}</span></p>
+                    {/* <p className="cart__summary-item">Discount <span className="cart__summary-item-price">{`$${discount}`}</span></p> */}
                     <div className="cart__divider"></div>
                     <p className="cart__summary-item">Shipping Fees <span className="cart__summary-item-price">FREE!!!</span></p>
                     <div className="cart__divider"></div>
-                    <p className="cart__summary-item, cart__total">Cart Value <span className="cart__summary-item-price">{`$${CartTotal - discount}`}</span></p>
+                    {/* <p className="cart__summary-item, cart__total">Cart Value <span className="cart__summary-item-price">{`$${CartTotal - discount}`}</span></p> */}
                     <button className="cart__summary-button poppins-semibold"><Link to="/checkout" className="cart__summary-button-link">Proceed to checkout</Link></button>
                 </aside>
             </main>

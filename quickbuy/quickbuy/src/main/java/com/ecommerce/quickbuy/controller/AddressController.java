@@ -1,6 +1,5 @@
 package com.ecommerce.quickbuy.controller;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,28 +23,16 @@ public class AddressController {
     @Autowired
     private AddressService addressService;
 
-    @GetMapping("/findAll/{userId}")
-    public ResponseEntity<List<AddressDto>> getUserAddresses(@PathVariable int userId) {
-        List<AddressDto> addresses = addressService.getAddressesByUserId(userId);
-        return ResponseEntity.ok(addresses);
-    }
-
-    @GetMapping("/findAllAddresses")
-    public ResponseEntity<List<Address>> getUserAddresses() {
-        List<Address> addresses = addressService.findAllAddresses();
-        return ResponseEntity.ok(addresses);
-    }
-
     @PostMapping("/add")
-    public ResponseEntity<AddressDto> addAddress(@RequestBody AddressDto address) {
-        AddressDto savedAddress = addressService.addAddress(address);
-        return ResponseEntity.ok(savedAddress);
+    public ResponseEntity<String> addAddress(@RequestBody AddressDto addressDto) {
+        addressService.addAddress(addressDto);
+        return ResponseEntity.ok().body("Address saved successfully");
     }
 
-    @DeleteMapping("/remove/{addressId}")
-    public ResponseEntity<String> deleteAddress(@PathVariable int addressId) {
-        addressService.deleteAddress(addressId);
-        return ResponseEntity.ok("Address deleted successfully");
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<Address>> getAddressesByUserId(@PathVariable int userId) {
+        List<Address> addresses = addressService.getAddressesByUserID(userId);
+        return ResponseEntity.ok(addresses);
     }
 
 }
