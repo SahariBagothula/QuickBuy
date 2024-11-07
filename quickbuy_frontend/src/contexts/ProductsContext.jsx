@@ -5,7 +5,7 @@ export const ProductsContext = createContext();
 
 export const ProductsProvider = ({ children }) => {
 
-    const initialState = { data: [], productsData: [], enteredText: "", loading: false, error: null, selectedBrands: [], selectedCategories: [], productQuantity: 1 };
+    const initialState = { data: [], productsData: [], enteredText: "", loading: false, error: null, selectedBrands: [], selectedCategories: [], productQuantity: 1, wishlist: [] };
 
     const reducer = (state, action) => {
         switch (action.type) {
