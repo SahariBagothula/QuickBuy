@@ -33,17 +33,22 @@ public class AddressService {
         if (attributes != null) {
             return attributes.getRequest();
         } else {
-            throw new IllegalStateException("Request attributes are not availbale");
+            throw new IllegalStateException("Request attributes are not available");
         }
     }
 
     private String extractTokenFromRequest(HttpServletRequest request) {
+        System.out.println("REQUEST: " + request);
         String bearerToken = request.getHeader("Authorization");
-        if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
-            return bearerToken.substring(7);
-        } else {
-            throw new RuntimeException("JWT Token is missing or invalid");
-        }
+        System.out.println("TOKEN: " + bearerToken);
+        return bearerToken;
+    }
+
+    private int getCurrentUserId() {
+        HttpServletRequest request = getCurrentHttpRequest();
+        String token = extractTokenFromRequest(request);
+        System.out.println("USERID: " + jwtUtil.extractUserId(token));
+        return jwtUtil.extractUserId(token);
     }
 
     public Address addAddress(AddressDto addressDTO) {
@@ -68,7 +73,8 @@ public class AddressService {
         return addressRepository.save(address);
     }
 
-    public List<Address> getAddressesByUserID(int userId) {
+    public List<Address> getAddressesByUserID() {
+        int userId = getCurrentUserId();
         User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
         return addressRepository.findByUserId(user.getId());
     }

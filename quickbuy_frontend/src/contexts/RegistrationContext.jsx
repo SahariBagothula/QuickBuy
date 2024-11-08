@@ -1,7 +1,10 @@
 import React, { createContext, useReducer } from 'react';
-import axiosInstance from '../api/axios';
 import Swal from 'sweetalert2';
 import { useNavigate, useLocation } from 'react-router-dom';
+
+
+import axiosInstance from '../api/axios';
+
 
 export const RegistrationContext = createContext();
 

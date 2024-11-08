@@ -24,14 +24,16 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Router>
     <React.StrictMode>
-      <ProductsProvider>
-        <ImagesProvider>
-          <TestimonialsProvider>
-            <InfoDataProvider>
-              <AddressProvider>
+      <RegistartionProvider>
+        <ProductsProvider>
+          <ImagesProvider>
+            <TestimonialsProvider>
+              <InfoDataProvider>
+
                 <AuthProvider>
-                  <RegistartionProvider>
-                    <ProfileProvider>
+
+                  <ProfileProvider>
+                    <AddressProvider>
                       <CartProvider>
                         <App />
                         <ToastContainer
@@ -44,15 +46,17 @@ root.render(
                           pauseOnFocusLoss
                         />
                       </CartProvider>
-                    </ProfileProvider>
-                  </RegistartionProvider>
-                </AuthProvider>
-              </AddressProvider>
-            </InfoDataProvider>
+                    </AddressProvider>
+                  </ProfileProvider>
 
-          </TestimonialsProvider>
-        </ImagesProvider>
-      </ProductsProvider>
+                </AuthProvider>
+
+              </InfoDataProvider>
+
+            </TestimonialsProvider>
+          </ImagesProvider>
+        </ProductsProvider>
+      </RegistartionProvider>
     </React.StrictMode>
   </Router>
 );

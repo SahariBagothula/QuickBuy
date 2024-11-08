@@ -1,7 +1,6 @@
 package com.ecommerce.quickbuy.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -29,9 +28,9 @@ public class AddressController {
         return ResponseEntity.ok().body("Address saved successfully");
     }
 
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<List<Address>> getAddressesByUserId(@PathVariable int userId) {
-        List<Address> addresses = addressService.getAddressesByUserID(userId);
+    @GetMapping("/user")
+    public ResponseEntity<List<Address>> getAddressesByUserId() {
+        List<Address> addresses = addressService.getAddressesByUserID();
         return ResponseEntity.ok(addresses);
     }
 

@@ -3,6 +3,8 @@ package com.ecommerce.quickbuy.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.ecommerce.quickbuy.dto.LoginDto;
 import com.ecommerce.quickbuy.dto.UserDto;
@@ -15,6 +17,8 @@ import com.ecommerce.quickbuy.exception.UserNotFoundException;
 import com.ecommerce.quickbuy.model.User;
 import com.ecommerce.quickbuy.repository.UserRepository;
 import com.ecommerce.quickbuy.util.JwtUtil;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @Service
 public class UserService {
@@ -29,6 +33,29 @@ public class UserService {
     private JwtUtil jwtUtil;
 
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+    private HttpServletRequest getCurrentHttpRequest() {
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        if (attributes != null) {
+            return attributes.getRequest();
+        } else {
+            throw new IllegalStateException("Request attributes are not available");
+        }
+    }
+
+    private String extractTokenFromRequest(HttpServletRequest request) {
+        System.out.println("REQUEST: " + request);
+        String bearerToken = request.getHeader("Authorization");
+        System.out.println("TOKEN: " + bearerToken);
+        return bearerToken;
+    }
+
+    private int getCurrentUserId() {
+        HttpServletRequest request = getCurrentHttpRequest();
+        String token = extractTokenFromRequest(request);
+        System.out.println("USERID: " + jwtUtil.extractUserId(token));
+        return jwtUtil.extractUserId(token);
+    }
 
     public User registerUser(UserDto userDto) {
 
@@ -80,7 +107,8 @@ public class UserService {
 
     }
 
-    public User findUserById(int userId) {
+    public User findUserById() {
+        int userId = getCurrentUserId();
         return userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException("User with the ID " + userId + " not found. "));
     }

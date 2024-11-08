@@ -37,7 +37,7 @@ public class SecurityConfig {
                                 "/image/update", "/image/findAll", "/images/**", "/**", "/data/add", "/data/update",
                                 "/data/delete", "/data/findAll")
                         .permitAll()
-                        .requestMatchers("/user/findById").authenticated()
+                        .requestMatchers("/user/findById", "/address/user").authenticated()
                         .anyRequest().authenticated() // Require authentication for all other requests
                 )
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);

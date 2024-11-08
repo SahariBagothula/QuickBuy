@@ -1,6 +1,5 @@
 import React, { createContext, useEffect, useReducer } from "react";
 import axiosInstance from "../api/axios";
-import { jwtDecode } from 'jwt-decode';
 import Swal from 'sweetalert2';
 
 export const AddressContext = createContext();
@@ -78,12 +77,11 @@ export const AddressProvider = ({ children }) => {
     useEffect(() => {
 
         const token = localStorage.getItem("token");
-        const { userId } = jwtDecode(token);
-
+        if (!token) return;
 
         dispatch({ type: "FETCH_PRODUCTS_REQUEST" });
 
-        axiosInstance.get(`address/findAll/${userId}`)
+        axiosInstance.get("address/findAll/")
             .then(response => {
                 dispatch({ type: "FETCH_PRODUCTS_SUCCESS", payload: response.data });
                 // console.log(response.data)
