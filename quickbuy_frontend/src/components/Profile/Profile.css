@@ -29,6 +29,7 @@
 .profile__label {
     font-weight: bold;
     color: #555555;
+    margin-right: 0.15rem;
 }
 
 .profile__details{

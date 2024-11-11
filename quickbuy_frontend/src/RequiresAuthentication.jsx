@@ -1,17 +1,17 @@
 import React, { useContext } from 'react';
-import { AuthContext } from './contexts/AuthContext';
+import { ProfileContext } from './index';
 import { Navigate, useLocation } from 'react-router';
 
 
 export const RequiresAuthentication = ({ children }) => {
 
     const location = useLocation();
-    const { state } = useContext(AuthContext);
+    const { state } = useContext(ProfileContext);
 
     console.log(location)
 
     return (
-        state?.data.active ? children : <Navigate to="/login" state={{ from: location }}></Navigate>
+        state?.profileData.active ? children : <Navigate to="/login" state={{ from: location }}></Navigate>
     )
 
 }

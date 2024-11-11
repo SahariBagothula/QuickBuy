@@ -22,20 +22,20 @@ export const AuthProvider = ({ children }) => {
 
     const [state, dispatch] = useReducer(reducer, initialState);
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        dispatch({ type: "FETCH_DETAILS_REQUEST" });
+    //     dispatch({ type: "FETCH_DETAILS_REQUEST" });
 
-        api.get("user/findById/7")
-            .then(response => {
-                dispatch({ type: "FETCH_DETAILS_SUCCESS", payload: response.data });
-                console.log(response.data);
-            })
-            .catch(error => {
-                dispatch({ type: "FETCH_DETAILS_FAILURE", payload: error.message });
-            })
+    //     api.get("user/findById/7")
+    //         .then(response => {
+    //             dispatch({ type: "FETCH_DETAILS_SUCCESS", payload: response.data });
+    //             console.log(response.data);
+    //         })
+    //         .catch(error => {
+    //             dispatch({ type: "FETCH_DETAILS_FAILURE", payload: error.message });
+    //         })
 
-    }, [])
+    // }, [])
 
     return (
         <AuthContext.Provider value={{ state, dispatch }}>

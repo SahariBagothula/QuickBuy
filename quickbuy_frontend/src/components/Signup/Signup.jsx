@@ -8,7 +8,6 @@ import Footer from "../Footer/Footer";
 
 const SignUp = () => {
 
-
     const { state: imagesState } = useContext(ImagesContext);
     const { state, dispatch, registerUser } = useContext(RegistrationContext);
 

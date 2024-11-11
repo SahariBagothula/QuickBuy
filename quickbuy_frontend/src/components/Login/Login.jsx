@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 import { ImagesContext, RegistrationContext } from '../../index';
 import './Login.css';
@@ -6,6 +7,8 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 
 const Login = () => {
+
+    const location = useLocation();
 
     const { state: imagesState } = useContext(ImagesContext);
 
@@ -49,7 +52,7 @@ const Login = () => {
                         <button className="login__button poppins-semibold" type="submit" onClick={handleSubmit}>Log In</button>
                     </form>
                     <p className="login__signup-text poppins-semibold">
-                        Not a registered user? <a href="/signup" className="login__signup-link">Sign up</a>
+                        Not a registered user? <Link to="/signup" state={{ from: location.state?.from }} className="login__signup-link">Sign up</Link>
                     </p>
                 </div>
             </div>

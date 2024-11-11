@@ -12,7 +12,8 @@ export const RegistartionProvider = ({ children }) => {
 
     const navigate = useNavigate();
     const location = useLocation();
-    // console.log(location)
+    console.log(location)
+
 
     const initialState = {
         fullname: "",
@@ -60,7 +61,8 @@ export const RegistartionProvider = ({ children }) => {
                 },
             })
                 .then(() => {
-                    navigate("/verify");
+                    const path = "/verify";
+                    navigate(path, { state: { from: location.state?.from } });
                 })
             dispatch({ type: "RESET_FORM" });
         } catch (error) {
@@ -95,7 +97,9 @@ export const RegistartionProvider = ({ children }) => {
                 }
             })
                 .then(() => {
-                    navigate("/login")
+                    const redirectionPath = location?.state?.from?.pathname;
+                    console.log(redirectionPath)
+                    navigate(redirectionPath);
                 })
             dispatch({ type: "RESET_FORM" });
         } catch (error) {
